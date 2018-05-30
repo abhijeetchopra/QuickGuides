@@ -53,6 +53,9 @@ git log
 # remote 
 git remote add https://github.com/abhijeetchopra/new-repo/abc.git
 
+# remote config in current directory 
+git remote -v
+
 # pushing, the -u parameter tell git to remember the parameters so next time we can write just : git push
 git push -u origin master
 
