@@ -4,7 +4,61 @@
 # Desc: Quick Git Guide
 # --------------------------------------
 
-# GIT COMMANDS
+# REFERENCES
+#---------------------------------------
+# 1. https://git-scm.com/docs/
+# 2. http://gitimmersion.com
+
+
+# GIT HELP
+#---------------------------------------
+
+# Git User Manual
+info git
+
+# Git command Quick Reference
+git [command] -help
+
+# Git command Manual Pages
+git help [command]
+git [command] --help
+
+
+# GIT CONFIGURATION
+#---------------------------------------
+
+# checking configuration settings
+git config --list
+
+# checking configuration settings specific key value
+git config --global <key>
+git config --global user.name
+
+# setting up your identity
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+
+# settin global configuration for line endings
+# On Windows, you simply pass true to the configuration (as shown below)
+git config --global core.autocrlf true
+
+
+# GIT ALIASES
+#---------------------------------------
+cd ~
+notepad .gitconfig
+# add the following to the .gitconfig file in your $HOME directory
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+	hist1 = log --pretty=oneline
+	type = cat-file -t
+	dump = cat-file -p
+
+# WORKING WITH GIT REPOSITORIES
 #---------------------------------------
 
 # Two ways:
@@ -47,8 +101,11 @@ git rm -r directory_name
 # commiting all files to the stating area / online server
 git commit -m "Adding new files"
 
-# browse changes log
+# browse changes in log - with different formatting options
 git log
+git log --pretty=oneline
+git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+
 
 # remote 
 git remote add https://github.com/abhijeetchopra/new-repo/abc.git
