@@ -60,7 +60,6 @@ notepad .gitconfig
 
 # WORKING WITH GIT REPOSITORIES
 #---------------------------------------
-
 # Two ways:
 # 1. clone existing initialized repo from server 
 # 2. initialize repo locally and "remote add" to server
@@ -83,10 +82,33 @@ mkdir my_repo
 git init
 ls
 
+
+# WORKFLOW OVERVIEW
+#---------------------------------------
+
+0. initialize local repo  : git init
+  0.1 undo initializing   : rm -rf .git
+1. create file locally    : touch <filename>
+2. modify file locally    : <editor> <filename>
+3. save file locally      : [within editor]
+  3.1 delete file locally : rm <filename>
+  
+4. add file locally to    : git add <filename>
+   staging area
+  4.1 remove file from    : git reset HEAD <filename>
+      stating area
+5. commit file locally    : git commit <filename> -m "<message>"
+  5.1 
+6. push changes to server : git push -u origin master
+7. pull from server       : git pull origin master
+
+# GIT COMMANDS
+#---------------------------------------
+
 # check status
 git status
 
-# track new files
+# track new files - add files to staging area before committing
 git add file_name
 
 # adding all files using wildcards
@@ -97,6 +119,17 @@ git rm file_name
 
 # removing added directory recursively
 git rm -r directory_name
+
+
+# undo adding file/dir using reset
+# If you need to remove a single file from the staging area, use
+git reset HEAD -- <file>
+
+# If you need to remove a whole directory (folder) from the staging area
+git reset HEAD -- <directoryName>
+
+# Your modifications will be kept. When you run git status the file will once 
+# again show up as modified but not yet staged.
 
 # commiting all files to the stating area / online server
 git commit -m "Adding new files"
