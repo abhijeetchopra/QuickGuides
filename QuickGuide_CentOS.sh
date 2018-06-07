@@ -134,6 +134,15 @@ $ gnome-system-log
 # update timestamp of existing file / create new empty file
 $ touch <filename>
 
+# editing files
+# --------------------------------------
+vi <filename>
+nano <filename>
+gedit <filename>
+emacs <filename>
+
+vi new_file # will create the file and open it, if file doesn't already exists
+
 # cp - copy files
 # --------------------------------------
 $ cp <filename> <destination>
@@ -365,7 +374,7 @@ $ su -c 'yum update'
 $ grep "the" poems
 $ grep -n "the" poems # prints the line numbers
        -in "the" poems
-	   -v "the" poems
+	   -v "the" poems # prints line without "the"
 	   -E "[hijk]" poems # regex - either of h,i,j,k
 	   -E "\w{6,}" poems
 
@@ -425,11 +434,108 @@ $ ls -lah 2 >> notreal      # 2 : writes errors to file (appends >>)
 # --------------------------------------
 
 
-# Further Reading
+# ps - report snapshot of processes currently active in shell
+# --------------------------------------
+
+# print processes in current shell
+ps 
+
+# ps command with arguments
+ps -aux
+   -a # print "all" processes
+   -u # 
+   -x # print processes owned by user "x"
+   -f # full format
+   -F # extra full format
+   
+# NOTE: UNIX vs BDS syntax
+# "$ps -aux" is distinct from "$ps aux" without the dash "-" sign
+
+# output 
+# PID - process ID
+# CMD - executable name
+# TTY - terminal associated with process
+# TIME - cumulated CPU time
+# STAT - process state
+# COMMAND - command arguments
+
+# print every process on the system using standard syntax
+ps -e
+ps -ef
+ps -eF
+ps -ely
+
+# print every process on the system using BSD syntax
+ps ax
+ps aux
+
+# print a process tree
+ps -ejH
+ps axjf
+ps -e --forest
+
+# print a process tree for given process
+ps -ef --forest | grep -v grep | grep rsync
+
+# print info about threads
+ps -eLf
+ps axms
+
+# print security info
+ps -eo euser, ruser, suser, fuser, f, comm, label
+ps axZ
+ps -eM
+
+# print every process with a user-defined format
+ps -eo pid,tid,class,rtprio,ni,pri,psr,pcpu,stat,wchan:14,comm
+ps axo stat,euid,ruid,tty,tpgid,sess,pgrp,ppid,pid,pcpu,comm
+ps -Ao pid,tt,user,fname,tmout,f,wchan
+
+# print only process IDs of syslogd
+ps -C syslogd -o pid=
+
+# print only the name of PID 42
+ps -q 42 -o comm=
+# --------------------------------------
+
+
+# transferring files from dir A to B
+# --------------------------------------
+# scp is secured and encrypted but slow
+# rsync is fast and has optimization features
+
+# scp 
+#   1. copy from A to B if logged into A
+scp /source username@b:/destination
+
+#   2. copy from A to B if logged into B
+scp username@a:/source /destination
+
+# rsync
+rsync -uav srchost:<source_path> <destination_path>
+
+mkdir ~/A                      # creating empty dir
+touch ~/A/file_0{1-9}          # populating dir A with dummy files
+mkdir ~/B                      # creating empty dir B
+$ rsync -av srchost:~/A/ ~/B/ # transfering files from A to B
+
+# -a: archive mode - no hardlinks, don't preserve ACLs, cross filesystem 
+# -v: verbose
+# -u: update - skip files that are newer
+# -z: compression
+
+touch ~/A/file_{11-99}         # creating more dummy files
+touch ~/A/file_100             # 
+$ rsync -uav srchost:~/A/ ~/B/ # transfering only new data
+
+# -u: stands for --update, replaces files only if different filename/size/time
+# --------------------------------------
+
+
+# References / Further Reading
 # --------------------------------------
 https://www.hostinger.com/tutorials/how-to-setup-ftp-server-on-ubuntu-vps/
-
-
+https://www.tecmint.com/ps-command-examples-for-linux-process-monitoring/
 
 # END OF FILE
 # --------------------------------------
