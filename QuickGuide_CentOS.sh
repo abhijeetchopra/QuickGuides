@@ -47,6 +47,7 @@ $ sudo yum install gnome-shell-browser-plugin
 # --------------------------------------
 
 
+
 # Basic Linux Shell Command Syntax
 # --------------------------------------
 # Command Syntax: <command> <options> <arguments>
@@ -70,11 +71,14 @@ $ ls -l    # list
 ~/ means home directory
 ../ means parent directory
 
+
+
 # cd - Change current directory
 # --------------------------------------
 $ cd ~/ # changes current directory to home directory
 $ cd .. # go to parent directory
 $ cd /  # go to root directory
+
 
 
 # mkdir - make directory / create folder
@@ -83,12 +87,16 @@ $ mkdir <dir_name>
 
 $ mkdir {dir_1, dir_2, dir_3} # creates multiple directories in one command
 
+
+
 # sort - sorts contents of a file/input
 # --------------------------------------
 $ sort -u /etc/passwd
 command : "sort"
 options : "-u"
 arguments : "/etc/passwd" which is the file path
+
+
 
 # grep - searches for text in file/input
 # --------------------------------------
@@ -97,10 +105,14 @@ command : "grep" used for searching text
 options : "-i" for ignore case sensitive search
 arguments : "/etc/passwd" which is the file path 
 
+
+
 # find - finds files
 # --------------------------------------
 $ find . -name "poe*" # find all files in current directory with filename beginning "poe"
 find <scope> <option - find by name> <argument>
+
+
 
 # man - opening manual to get help on commands
 # --------------------------------------
@@ -109,6 +121,7 @@ $ man <command>
 # example: 
 $ man grep
 Output: Displays manual pages for "grep" command
+
 
 
 # rm - removing/deleting files
@@ -134,6 +147,8 @@ $ gnome-system-log
 # update timestamp of existing file / create new empty file
 $ touch <filename>
 
+
+
 # editing files
 # --------------------------------------
 vi <filename>
@@ -142,6 +157,8 @@ gedit <filename>
 emacs <filename>
 
 vi new_file # will create the file and open it, if file doesn't already exists
+
+
 
 # cp - copy files
 # --------------------------------------
@@ -152,9 +169,12 @@ $ cp -a   #arhive     -
      -n   #no clobber - prevents overwriting existing files
      -u   #update     - only moves if newer version
 
+
+
 # mv - move
 # --------------------------------------
 $ mv <filename> <destination>
+
 
 
 # Terminal Shortcuts
@@ -194,6 +214,7 @@ $ ls -ali
 +--------------+------------------+-----------------+-------+-------+------+-------+-----+-------+-----------+
 |       933442 | -rwxrw-r--       |              10 | root  | root  | 2048 | Jan   |  13 | 07:11 | afile.exe |
 +--------------+------------------+-----------------+-------+-------+------+-------+-----+-------+-----------+
+
 
 
 # chmod - Change mode / File permissions
@@ -250,15 +271,19 @@ w : write
 x : execute
 
 
+
 # chown - Change User Ownership
 # --------------------------------------
 $ sudo chown root test.sh
 $ sudo chown <user> <filename>
 
+
+
 # chgrp - Change Group Ownership
 # --------------------------------------
 $ sudo chgrp <wheel> test.sh
 $ sudo chgrp <group> <filename>
+
 
 
 # Pipes ( | )
@@ -310,7 +335,8 @@ $ tar -caf myfile.tar 'Excercise Files'
       -a # automatically detect compression format from file ext
       -f # file
 	  
-	  
+
+  
 # Extracting Files
 # --------------------------------------
 
@@ -319,6 +345,7 @@ $ tar -xvf myfile.tar
       -v # verbose / print warnings/messages
       -f # file
 
+	  
 # Extracting tar.gz
 
 $ git clone https://github.com/abhijeetchopra/Assembly/blob/master/Masm615_Download.zip
@@ -338,17 +365,25 @@ $ sudo yum install nano # yum is package manager in CentOS (CentOS didn't port d
 
 $ sudo apt-get install nano # apt-get is package manager in Ubuntu
 
+
+
 # OS version
 # --------------------------------------
 $ cat /etc/*-release
+
+
 
 # Memory
 # --------------------------------------
 $ free -h
 
+
+
 # CPU
 # --------------------------------------
 $ cat /proc/cpuinfo
+
+
 
 # HDD
 # --------------------------------------
@@ -357,14 +392,17 @@ $ df -h # disk-free space
 $ sudo du / -hd1 # disk usage
 
 
+
 # Check installed packages
 # --------------------------------------
 $ dnf history # Fedora
 
 
+
 # Update CentOS
 # --------------------------------------
 $ su -c 'yum update'
+
 
 
 # grep - searches text
@@ -376,6 +414,8 @@ $ grep -n "the" poems # prints the line numbers
 	   -E "[hijk]" poems # regex - either of h,i,j,k
 	   -E "\w{6,}" poems
 
+	   
+	   
 # awk - extract/modify file/stream
 # --------------------------------------
 $ awk '{print $2}' simple_data.txt # prints 2nd column of space/tab separated values
@@ -388,9 +428,12 @@ $ awk '{for(i=6;i<=NF;++i)printf $i""FS; print ""}' auth.log # prints all column
 
 $ awk '{$1=$2=$3=$4=$5=""; print $0}' auth.log
 
+
+
 # sed
 # --------------------------------------
 $sed s/Orange/Red/ simple_data.txt # replaces Orange with Red
+
 
 
 # sort
@@ -407,12 +450,14 @@ $ cat simple_data.txt | tr [:lower:][:upper:] #
 $ cat file.txt | sort | uniq # unique rows only
 
 
+
 # standard input/output/error - stdin/stdout/stderr
 # --------------------------------------
 $ ls -lah 0 > filelist.txt  # 0 : writes output to console
 $ ls -lah 1 > filelist.txt  # 1 : writes output to file
 $ ls -lah 2 > notreal       # 2 : writes errors to file (overwrites)
 $ ls -lah 2 >> notreal      # 2 : writes errors to file (appends >>)
+
 
 
 # Resetting Root Password using rd.break
@@ -430,6 +475,7 @@ $ ls -lah 2 >> notreal      # 2 : writes errors to file (appends >>)
 # exit
 # exit
 # --------------------------------------
+
 
 
 # ps - report snapshot of processes currently active in shell
@@ -498,9 +544,26 @@ ps -q 42 -o comm=
 
 
 
+# jobs - jobs currently active in shell
+# --------------------------------------
+help jobs
+
+vi & # vi does in background
+
+jobs    # prints job status
+jobs -l # prints PIDs with jobs
+jobs -p # prints PIDs
+jobs %  # resume first job
+jobs %2 # resume second job
+
+jobs -STOP %<JOBID> # stop job with job id <JOBID>
+
+
+
 # creating 1GB dummy file
 # --------------------------------------
 dd if=/dev/urandom of=sample.txt bs=1MB count=1024
+
 
 
 # transferring files from dir A to B
@@ -525,7 +588,7 @@ rsync -av srchost:~/A/ ~/B/ # transfering files from A to B
 
 # -a: archive mode - no hardlinks, don't preserve ACLs, cross filesystem 
 # -v: verbose
-# -u: update - skip files that are newer
+# -u: update - replaces files only if different filename/size/time
 # -z: compression
 
 touch ~/A/file_{11-99}         # creating more dummy files
@@ -533,15 +596,14 @@ touch ~/A/file_100             #
 rsync -uav ~/A/ ~/B/ # transfering only new data
 
 
-# -u: stands for --update, replaces files only if different filename/size/time
-# --------------------------------------
-
 
 # References / Further Reading
 # --------------------------------------
 https://linux.die.net
 https://www.hostinger.com/tutorials/how-to-setup-ftp-server-on-ubuntu-vps/
 https://www.tecmint.com/ps-command-examples-for-linux-process-monitoring/
+
+
 
 # END OF FILE
 # --------------------------------------
