@@ -32,18 +32,18 @@ OR
 8.2 Applications > System tools > Software Update
 OR
 8.3 Applications > Favorites > Terminal > 
-$ sudo yum update
+sudo yum update
 
 # Installing development tools for seamless integration with host OS
 9. Applications > Favourites > Terminal
-$ sudo yum groupinstall "Development Tools"
+sudo yum groupinstall "Development Tools"
 
 # Enabling WiFi Autoconnect
 10. Applications > System tools > Settings > Network > Wired > Click the cog wheel button > Check "Connect Automatically"
 
 # Extension Themes
 11. Applications > Favourites > Terminal
-$ sudo yum install gnome-shell-browser-plugin
+sudo yum install gnome-shell-browser-plugin
 # --------------------------------------
 
 
@@ -54,16 +54,16 @@ $ sudo yum install gnome-shell-browser-plugin
 
 # ls - List files
 # --------------------------------------
-$ ls -lh /usr/bin
+ls -lh /usr/bin
 command : "ls"
 options : "-lh" where l is for list, h is for human-readable format
 arguments: "/usr/bin" which is the file path
 
-$ ls -l    # list
-     -a    # list all files
-	 -h    # human readable format
-	 -i    # inode
-	 -lah  # all three options at once
+ls -l    # list
+   -a    # list all files
+   -h    # human readable format
+   -i    # inode
+   -lah  # all three options at once
 
 # Note: 
 # Tilde (~) character denotes home folder
@@ -75,23 +75,23 @@ $ ls -l    # list
 
 # cd - Change current directory
 # --------------------------------------
-$ cd ~/ # changes current directory to home directory
-$ cd .. # go to parent directory
-$ cd /  # go to root directory
+cd ~/ # changes current directory to home directory
+cd .. # go to parent directory
+cd /  # go to root directory
 
 
 
 # mkdir - make directory / create folder
 # --------------------------------------
-$ mkdir <dir_name> 
+mkdir <dir_name> 
 
-$ mkdir {dir_1, dir_2, dir_3} # creates multiple directories in one command
+mkdir {dir_1, dir_2, dir_3} # creates multiple directories in one command
 
 
 
 # sort - sorts contents of a file/input
 # --------------------------------------
-$ sort -u /etc/passwd
+sort -u /etc/passwd
 command : "sort"
 options : "-u"
 arguments : "/etc/passwd" which is the file path
@@ -100,7 +100,7 @@ arguments : "/etc/passwd" which is the file path
 
 # grep - searches for text in file/input
 # --------------------------------------
-$ grep -i "root" /etc/passwd
+grep -i "root" /etc/passwd
 command : "grep" used for searching text
 options : "-i" for ignore case sensitive search
 arguments : "/etc/passwd" which is the file path 
@@ -109,43 +109,43 @@ arguments : "/etc/passwd" which is the file path
 
 # find - finds files
 # --------------------------------------
-$ find . -name "poe*" # find all files in current directory with filename beginning "poe"
+find . -name "poe*" # find all files in current directory with filename beginning "poe"
 find <scope> <option - find by name> <argument>
 
 
 
 # man - opening manual to get help on commands
 # --------------------------------------
-$ man <command>
+man <command>
 
 # example: 
-$ man grep
+man grep
 Output: Displays manual pages for "grep" command
 
 
 
 # rm - removing/deleting files
 # --------------------------------------
-$ rm <filename> # warning: linux does not have a recycle bin
+rm <filename> # warning: linux does not have a recycle bin
 
 # delete directory
-$ rm -r <directory_name>
+rm -r <directory_name>
 
 # delete empty dir 
-$ rmdir <directory_name>
+rmdir <directory_name>
 
 # print file contents
-$ cat /var/spool/mail/username
+cat /var/spool/mail/username
 
 # get entry
-$ getent passwd 
-$ getent group
+getent passwd 
+getent group
 
 # system log viewer
-$ gnome-system-log
+gnome-system-log
 
 # update timestamp of existing file / create new empty file
-$ touch <filename>
+touch <filename>
 
 
 
@@ -162,9 +162,9 @@ vi new_file # will create the file and open it, if file doesn't already exists
 
 # cp - copy files
 # --------------------------------------
-$ cp <filename> <destination>
+cp <filename> <destination>
 
-$ cp -a   #arhive     -
+cp -a   #arhive     -
      -b   #backup     -
      -n   #no clobber - prevents overwriting existing files
      -u   #update     - only moves if newer version
@@ -173,7 +173,7 @@ $ cp -a   #arhive     -
 
 # mv - move
 # --------------------------------------
-$ mv <filename> <destination>
+mv <filename> <destination>
 
 
 
@@ -205,7 +205,7 @@ Ctrl + Right Arrow Key            : One Word Right
 d r w x r w x r w x 
 
 
-$ ls -ali
+ls -ali
 
 933442 -rwxrw-r--    10    root   root 2048    Jan 13 07:11 afile.exe
 
@@ -220,12 +220,12 @@ $ ls -ali
 # chmod - Change mode / File permissions
 # --------------------------------------
 
-$ touch testfile.txt # creates a blank textfile, default permissions are 666
+touch testfile.txt # creates a blank textfile, default permissions are 666
 
 # Two ways to change permissions: 1. Octal / 2. Symbolic
-$ chmod 777 testfile.txt # Octal
+chmod 777 testfile.txt # Octal
 # OR
-$ chmod u+x,g+x,o+x testfile.txt # Symbolic
+chmod u+x,g+x,o+x testfile.txt # Symbolic
 
 #Syntax: chmod [who][+,-,=] [permissions] [filename]
 
@@ -274,30 +274,30 @@ x : execute
 
 # chown - Change User Ownership
 # --------------------------------------
-$ sudo chown root test.sh
-$ sudo chown <user> <filename>
+sudo chown root test.sh
+sudo chown <user> <filename>
 
 
 
 # chgrp - Change Group Ownership
 # --------------------------------------
-$ sudo chgrp <wheel> test.sh
-$ sudo chgrp <group> <filename>
+sudo chgrp <wheel> test.sh
+sudo chgrp <group> <filename>
 
 
 
 # Pipes ( | )
 # --------------------------------------
-$ echo "hello world" | wc # prints the word-count of string "hello"
+echo "hello world" | wc # prints the word-count of string "hello"
 Output: 1  2  12  # Lines, Words, Characters
 
-$ cat poems.txt | cat -n | tail -4 
+cat poems.txt | cat -n | tail -4 
 # print file | print line no.s | print last 4 - 97,98,99,100
 
-$ cat poems.txt | tail -4 | cat -4
+cat poems.txt | tail -4 | cat -4
 # print file | print last 4 | print line no.s - 1,2,3,4
 
-$ less poem.txt
+less poem.txt
 ↑↓    : scroll up/down
 space : scroll down one screen
 f/b   : forward/backward
@@ -308,7 +308,7 @@ q     : quit
 
 # Downloading files from URL using shell command
 # --------------------------------------
-$ wget <url> # file will be saved to current directory
+wget <url> # file will be saved to current directory
 
 # More uses: https://www.hostinger.com/tutorials/wget-command-examples/
 
@@ -324,23 +324,23 @@ $ wget <url> # file will be saved to current directory
 3. .tgz
 4. .tar.bz2
 
-$ tar -cvf myfile.tar 'Excercise Files'
-      -c # compress / create
-      -v # verbose / print warnings/messages
-      -f # file
+tar -cvf myfile.tar 'Excercise Files'
+    -c # compress / create
+    -v # verbose / print warnings/messages
+    -f # file
 
 
-$ tar -caf myfile.tar 'Excercise Files'
-      -c # compress / create
-      -a # automatically detect compression format from file ext
-      -f # file
-	  
+tar -caf myfile.tar 'Excercise Files'
+    -c # compress / create
+    -a # automatically detect compression format from file ext
+    -f # file
 
-  
+
+
 # Extracting Files
 # --------------------------------------
 
-$ tar -xvf myfile.tar
+tar -xvf myfile.tar
       -x # extract
       -v # verbose / print warnings/messages
       -f # file
@@ -348,8 +348,8 @@ $ tar -xvf myfile.tar
 	  
 # Extracting tar.gz
 
-$ git clone https://github.com/abhijeetchopra/Assembly/blob/master/Masm615_Download.zip
-$ tar -xvzf log.tar.gz
+git clone https://github.com/abhijeetchopra/Assembly/blob/master/Masm615_Download.zip
+tar -xvzf log.tar.gz
 # x: extract - c for compress
 # v: vebose - will show error/sucess messages
 # z: select gzip compression option - a for auto-detect with file extension
@@ -359,104 +359,104 @@ $ tar -xvzf log.tar.gz
 
 # Installing software/packages
 # --------------------------------------
-$ sudo dnf install nano # dnf is the package manager in Fedora (dnf replaced yum)
+sudo dnf install nano # dnf is the package manager in Fedora (dnf replaced yum)
 
-$ sudo yum install nano # yum is package manager in CentOS (CentOS didn't port dnf yet)
+sudo yum install nano # yum is package manager in CentOS (CentOS didn't port dnf yet)
 
-$ sudo apt-get install nano # apt-get is package manager in Ubuntu
+sudo apt-get install nano # apt-get is package manager in Ubuntu
 
 
 
 # OS version
 # --------------------------------------
-$ cat /etc/*-release
+cat /etc/*-release
 
 
 
 # Memory
 # --------------------------------------
-$ free -h
+free -h
 
 
 
 # CPU
 # --------------------------------------
-$ cat /proc/cpuinfo
+cat /proc/cpuinfo
 
 
 
 # HDD
 # --------------------------------------
-$ df -h # disk-free space
+df -h # disk-free space
 
-$ sudo du / -hd1 # disk usage
+sudo du / -hd1 # disk usage
 
 
 
 # Check installed packages
 # --------------------------------------
-$ dnf history # Fedora
+dnf history # Fedora
 
 
 
 # Update CentOS
 # --------------------------------------
-$ su -c 'yum update'
+su -c 'yum update'
 
 
 
 # grep - searches text
 # --------------------------------------
-$ grep "the" poems
-$ grep -n "the" poems # prints the line numbers
-       -in "the" poems
-	   -v "the" poems # prints line without "the"
-	   -E "[hijk]" poems # regex - either of h,i,j,k
-	   -E "\w{6,}" poems
+grep "the" poems
+grep -n "the" poems # prints the line numbers
+     -in "the" poems
+	 -v "the" poems # prints line without "the"
+	 -E "[hijk]" poems # regex - either of h,i,j,k
+	 -E "\w{6,}" poems
 
 	   
 	   
 # awk - extract/modify file/stream
 # --------------------------------------
-$ awk '{print $2}' simple_data.txt # prints 2nd column of space/tab separated values
+awk '{print $2}' simple_data.txt # prints 2nd column of space/tab separated values
 
-$ awk '{print $2 "\t" $1 }' simple_data.txt # <col2> <tab> <col1>
+awk '{print $2 "\t" $1 }' simple_data.txt # <col2> <tab> <col1>
 
-$ awk '{print $2}' simple_data.txt | sort -n # -n for numeric sort
+awk '{print $2}' simple_data.txt | sort -n # -n for numeric sort
 
-$ awk '{for(i=6;i<=NF;++i)printf $i""FS; print ""}' auth.log # prints all columns after 5
+awk '{for(i=6;i<=NF;++i)printf $i""FS; print ""}' auth.log # prints all columns after 5
 
-$ awk '{$1=$2=$3=$4=$5=""; print $0}' auth.log
+awk '{$1=$2=$3=$4=$5=""; print $0}' auth.log
 
 
 
 # sed
 # --------------------------------------
-$sed s/Orange/Red/ simple_data.txt # replaces Orange with Red
+sed s/Orange/Red/ simple_data.txt # replaces Orange with Red
 
 
 
 # sort
 # --------------------------------------
-$ sort -k2 simple_data.txt # sorts 2nd column
-$ sort -k2n simple_data.txt # sorts 2nd column numerically
-$ sort -u simple_data.txt # unique results only
+sort -k2 simple_data.txt # sorts 2nd column
+sort -k2n simple_data.txt # sorts 2nd column numerically
+sort -u simple_data.txt # unique results only
 
-$ rev simple_data.txt # prints file reverse / flip vertically
-$ tac simple_data.txt # prints file backwards / flip horizontally
+rev simple_data.txt # prints file reverse / flip vertically
+tac simple_data.txt # prints file backwards / flip horizontally
  
-$ cat simple_data.txt | tr [:lower:][:upper:] # 
+cat simple_data.txt | tr [:lower:][:upper:] # 
  
-$ cat file.txt | sort | uniq # unique rows only
+cat file.txt | sort | uniq # unique rows only
 
 
 
 # standard input/output/error - stdin/stdout/stderr
 # --------------------------------------
-$ ls -lah 0 > filelist.txt  # 0 : writes output to console
-$ ls -lah 1 > filelist.txt  # 1 : writes output to file
-$ ls -lah 2 > notreal       # 2 : writes errors to file (overwrites)
-$ ls -lah 2 >> notreal      # 2 : writes errors to file (appends >>)
+ls -lah 0 > filelist.txt  # 0 : writes output to console
+ls -lah 1 > filelist.txt  # 1 : writes output to file
+ls -lah 2 > notreal       # 2 : writes errors to file (overwrites)
+ls -lah 2 >> notreal      # 2 : writes errors to file (appends >>)
 
 
 
