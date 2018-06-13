@@ -51,7 +51,7 @@ $ sudo yum install gnome-shell-browser-plugin
 # --------------------------------------
 # Command Syntax: <command> <options> <arguments>
 
-# List files
+# ls - List files
 # --------------------------------------
 $ ls -lh /usr/bin
 command : "ls"
@@ -196,7 +196,7 @@ $ ls -ali
 +--------------+------------------+-----------------+-------+-------+------+-------+-----+-------+-----------+
 
 
-# Change mode / File permissions
+# chmod - Change mode / File permissions
 # --------------------------------------
 
 $ touch testfile.txt # creates a blank textfile, default permissions are 666
@@ -250,12 +250,12 @@ w : write
 x : execute
 
 
-# Change User Ownership with chown
+# chown - Change User Ownership
 # --------------------------------------
 $ sudo chown root test.sh
 $ sudo chown <user> <filename>
 
-# Change Group Ownership with chgrp
+# chgrp - Change Group Ownership
 # --------------------------------------
 $ sudo chgrp <wheel> test.sh
 $ sudo chgrp <group> <filename>
@@ -310,8 +310,7 @@ $ tar -caf myfile.tar 'Excercise Files'
       -a # automatically detect compression format from file ext
       -f # file
 	  
-	 
-
+	  
 # Extracting Files
 # --------------------------------------
 
@@ -328,7 +327,6 @@ $ tar -xvzf log.tar.gz
 # v: vebose - will show error/sucess messages
 # z: select gzip compression option - a for auto-detect with file extension
 # f: file
-
 
 
 
@@ -499,6 +497,12 @@ ps -q 42 -o comm=
 # --------------------------------------
 
 
+
+# creating 1GB dummy file
+# --------------------------------------
+dd if=/dev/urandom of=sample.txt bs=1MB count=1024
+
+
 # transferring files from dir A to B
 # --------------------------------------
 # scp is secured and encrypted but slow
@@ -517,7 +521,7 @@ rsync -uav srchost:<source_path> <destination_path>
 mkdir ~/A                      # creating empty dir
 touch ~/A/file_0{1-9}          # populating dir A with dummy files
 mkdir ~/B                      # creating empty dir B
-$ rsync -av srchost:~/A/ ~/B/ # transfering files from A to B
+rsync -av srchost:~/A/ ~/B/ # transfering files from A to B
 
 # -a: archive mode - no hardlinks, don't preserve ACLs, cross filesystem 
 # -v: verbose
@@ -526,7 +530,8 @@ $ rsync -av srchost:~/A/ ~/B/ # transfering files from A to B
 
 touch ~/A/file_{11-99}         # creating more dummy files
 touch ~/A/file_100             # 
-$ rsync -uav srchost:~/A/ ~/B/ # transfering only new data
+rsync -uav ~/A/ ~/B/ # transfering only new data
+
 
 # -u: stands for --update, replaces files only if different filename/size/time
 # --------------------------------------
@@ -534,6 +539,7 @@ $ rsync -uav srchost:~/A/ ~/B/ # transfering only new data
 
 # References / Further Reading
 # --------------------------------------
+https://linux.die.net
 https://www.hostinger.com/tutorials/how-to-setup-ftp-server-on-ubuntu-vps/
 https://www.tecmint.com/ps-command-examples-for-linux-process-monitoring/
 
