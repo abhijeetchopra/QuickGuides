@@ -10,6 +10,11 @@ Major Distros - Arch, Debian (Ubuntu), Red Hat (CentOS, Fedora, RHEL), Slackware
 
 Unix Philosophy : Do one thing. Do it well.
 
+
+################################################################################
+# INSTALLATION
+################################################################################
+
 # Linux Installation on Virtual Machine 
 #---------------------------------------
 # Installing guest OS: "CentOS 7" on host OS: "Windows 10" over Oracle VM VirtualBox
@@ -54,6 +59,10 @@ sudo yum install gnome-shell-browser-plugin
 
 
 
+################################################################################
+# BASIC LINUX SHELL COMMANDS
+################################################################################
+
 # Basic Linux Shell Command Syntax
 # --------------------------------------
 # Command Syntax: <command> <options> <arguments>
@@ -95,6 +104,13 @@ ls -l    # list
 # options with two dashes cannot be combined  
    
 
+# cat - print file contents / concatenate
+# --------------------------------------
+cat <filename>
+cat /var/spool/mail/<username>
+cat file_01 file_02 file_03
+
+
 # cd - Change current directory
 # --------------------------------------
 cd ~ # changes current directory to home directory
@@ -114,6 +130,7 @@ cd /  # go to root directory
 mkdir <dir_name> 
 mkdir {dir_1, dir_2, dir_3} # creates multiple directories in one command
 mkdir dir_{1..100} # creates 100 directories using bracket expansion
+mkdir -p dir{1..4}/parent{1..4}/child{one,two,three}
 
 
 # touch - create new empty file / update timestamp of existing file 
@@ -265,36 +282,87 @@ cat file_01 file_02 file_03 1> output.log 2>&1
 source: https://unix.stackexchange.com/a/37662/291648
 
 
-
-
-
-
-
-
-
-# find - finds files
+# stat - print file status
 # --------------------------------------
-find . -name "poe*" # find all files in current directory with filename beginning "poe"
-find <scope> <option - find by name> <argument>
+stat <filename>
 
-
+ 
 # wildcards
 # --------------------------------------
  * - any number of characters 
  ? - any one character
 
 
-# print file contents
-cat <filename>
-cat /var/spool/mail/<username>
+# find - finds files
+# --------------------------------------
+find . -name "poe*" # find all files in current dir with filename beginning "poe"
+find <scope> <option - find by name> <argument>
+
+
+# file - print file type
+# --------------------------------------
+file <filename>
+
+
+# file globbing / pattern matching
+# --------------------------------------
+file*.txt          -  file.txt, file1.txt, file01.txt, file_001.txt
+file??.txt         -  filexx.txt, fileyy.txt, file01.txt, fileAA.txt
+file[1-9]          -  1 of set 1 to 9
+file[a-z]          -  1 of set a to z
+file[123ABC]       -  1 of set 1,2,3,A,B,C
+file[!0-9]         -  not of set 1 to 9
+file[:<class>:]    -  [:upper:], [:lower:], [:alpha:], [:alnum:], [:digit:], [:space:]
+file[0-9].txt      =  file [[:digit:]].txt
+
+
+# brace expansion
+# --------------------------------------
+ls {*.jpg, *.gif, *.png}
+
+
+# shopt - shell options
+# --------------------------------------
+shopt -s extglob # turns on extended globs
+
+? - zero or one occurrence
+* - zero or more occurrence
++ - one or more occurrence
+
+file?(abc).txt     -  file.txt, fileabc.txt.
+file+(abc).txt     -  fileabc.txt, fileabcabc.txt, fileabcabcabc.txt, ...
+file+(*.jpg|*.gif) -  file*.jpg or file*.gif
+file*(abc).txt     -  file.txt, fileabc.txt, fileabcabc.txt, ...
+
+file[cd].txt       -  filec.txt, filed.txt # pattern matching
+file{c,d}.txt      -  filec.txt, filed.txt # brace expansion
+
+file?.txt
+
+
+# Create User / Group
+# --------------------------------------
+sudo useradd testuser    # creates user
+sudo passwd testuser     # sets user password
+
+sudo groupadd testgroup  # creates group
+
+
+# SUID / GUID
+# --------------------------------------
+SUID - elevates privileges to the file owner when executed
+SGID - elevates privileges to the file group when executed
+
+# Passwords
+# --------------------------------------
 
 # get entry
 getent passwd 
 getent group
 
+# /etc/passwd
+cat /etc/passwd
 
-# cat /etc/passwd
-# --------------------------------------
 /etc/passwd contains one line for each user account, with seven fields
 delimited by colons (“:”). These fields are:
 
@@ -319,13 +387,28 @@ passwd <username> # to change password of another user as root
 sudo passwd <username>
 
 
+# Logs
+# --------------------------------------
+
 # system log viewer
 gnome-system-log
 
 
+################################################################################
+# FILE PERMISSIONS
+################################################################################
+
 
 # File Permissions
 # --------------------------------------
+
+d : directory
+- : regular file
+l : symbolic link
+c : character file
+b : block device file
+s : socket file
+p : named pipe
 
 .................... d: directory | -: file | s: sym link
 | .................. r: user has read permission     | -: no permission
@@ -427,6 +510,26 @@ sudo chown <user> <filename>
 # --------------------------------------
 sudo chgrp <wheel> test.sh
 sudo chgrp <group> <filename>
+
+
+# ACL - Access Control List
+# --------------------------------------
+
+setfacl -m user:root:rwx aclfile.txt
+
+setfacl -m mask: :rx aclfile.txt
+
+getfacl -t aclfile.txt
+
+
+# Extended User Attributes
+# --------------------------------------
+
+# chattr - change attribute
+sudo chattr +i <filename> # adds i(immutable) attribute to file
+
+# lsattr - list attribute
+lsattr <filename>
 
 
 # Pipes ( | )
@@ -546,10 +649,103 @@ df -h # disk-free space
 sudo du / -hd1 # disk usage
 
 
+
+################################################################################
+# PACKAGE MANAGEMENT
+################################################################################
+
+
+# RPM vs YUM
+# --------------------------------------
+   RPM                                YUM
+1. Install download packages       1. Install from repos
+2. Manage installed packages       2. Search installable packages
+3. Query package database
+
+
+# RPM Querryiing - Database/Package/File
+# --------------------------------------
+rpm -qa      # q:querry, a:all
+rpm -qi bash # q:querry, i:information
+rpm -qa Group="System Environment/Shells" # pkgs installed in this group
+rpm -qa --last
+rpm -ql yum  # q:query, l:list
+rpm -qd yum  # q:query, d:documentation
+rpm -qf      # q:query, f:file  - to know where file came from
+rpm -q --provides bash
+rpm -q --requires bash
+rpm -q --changelog bash # view changelog
+rpm -qa --queryformat "%{NAME} %{VERSION}\n"
+rpm -qa --queryformat "%-30{NAME} %-10{VERSION}\n"   # left align
+rpm -qa --queryformat "%-30{NAME} %10{VERSION}\n"    # right align ***fav***
+
+rpm -q --queryformat "%{FILENAMES}\n" bash # only returns first entry of list FILENAMES
+rpm -q --queryformat "[%{FILENAMES}]" bash # shows for complete array
+rpm -q --queryformat "[%{FILENAMES} %{FILESIZES} \n]" bash
+rpm -q --queryformat "[%{NAME} ${INSTALLTIME:date}\n]" bash
+rpm -q --queryformat "[%{FILEMODES:perms} ${FILENAMES}\n]" bash # perms: permissions
+
+man rpm # for more info
+
+
+# Downloading pkgs with RPM
+# --------------------------------------
+mkdir ~/tmp/packages
+
+sudo yum install -y yum-plugin-downloadonly 
+# > now we can use --downloadonly option while installing with yum
+
+sudo yum install --downloadonly --downloaddir = ~/tmp/packages http  # http pkg
+
+
+# Installin Downloaded pkgs with RPM
+# --------------------------------------
+sudo rpm -ivh <package file name> # i:install, v:verbose, h:hash
+
+#Note: sometimes failed dependencies are not installed. Google the error.
+
+rpm -qlp <package file name> # q:query, l:list, p:package 
+
+
+# Uninstalling/removing programs with RPM
+# --------------------------------------
+rpm -ev <package_name>
+rpm -ev httpd
+
+
+# Upgrading programs with RPM
+# --------------------------------------
+sudo rpm -Uvh <package_name>
+
+sudo rpm -Uvh --nodeps <package_name> # ignoring dependency issue and upgrade
+
+sudo rpm -ivh --force <package_name> # overwrites package / force install
+
+#Note: sometimes dependency deadlock occurs so force install / upgrade is required
+
+
+# Validating Package Integrity
+# --------------------------------------
+cd ~tmp/packages
+ls
+rpm -k --nosignature <packagename>  # we get sha1, md5 OK
+rpm -k <packagename> # we get rsa sha1 md5 pgp OK; check both md5 checksum & gpg signature
+rpm -q gpg_publickey # we get <public_key>; copy this!
+rpm -qi <public_key> # paste here!
+
+
+
+# YUM - Yellowdog Update Manager
+# --------------------------------------
+
+
+
+
+
+
 # Check installed packages
 # --------------------------------------
 dnf history # Fedora
-
 
 
 # Update CentOS
