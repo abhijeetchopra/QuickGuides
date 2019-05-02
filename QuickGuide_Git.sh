@@ -73,6 +73,10 @@ git clone https://abhijeetchopra@bitbucket.org/tamucinventors/basic-ke.git
 git clone https://github.com/abhijeetchopra/Certifications.git
 ls
 
+# bash command to clone all public repos from github a account
+curl -sS "https://api.github.com/users/abhijeetchopra/repos?per_page=1000" | grep -w clone_url | grep -o '[^"]\+://.\+.git' | xargs -L1 git clone
+
+
 # INITIALIZE REPO LOCALLY AND ADDING TO SERVER
 #---------------------------------------
 # If you did not create a repo online first, then instead of cloning from web,
@@ -98,7 +102,7 @@ ls
   4.1 remove file from    : git reset HEAD <filename>
       stating area
 5. commit file locally    : git commit <filename> -m "<message>"
-  5.1 
+  5.1
 6. push changes to server : git push -u origin master
 7. pull from server       : git pull origin master
 
