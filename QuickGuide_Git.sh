@@ -61,7 +61,7 @@ notepad .gitconfig
 # WORKING WITH GIT REPOSITORIES
 #---------------------------------------
 # Two ways:
-# 1. clone existing initialized repo from server 
+# 1. clone existing initialized repo from server
 # 2. initialize repo locally and "remote add" to server
 
 
@@ -73,9 +73,9 @@ git clone https://abhijeetchopra@bitbucket.org/tamucinventors/basic-ke.git
 git clone https://github.com/abhijeetchopra/Certifications.git
 ls
 
-# CLONE EXISTING REPO FROM SERVER
+# INITIALIZE REPO LOCALLY AND ADDING TO SERVER
 #---------------------------------------
-# If you did not create a repo online first, then instead of cloning from web, 
+# If you did not create a repo online first, then instead of cloning from web,
 # you can create local repo, initialize empty git repository with "init" and "remote add" it to your server
 
 mkdir my_repo
@@ -92,7 +92,7 @@ ls
 2. modify file locally    : <editor> <filename>
 3. save file locally      : [within editor]
   3.1 delete file locally : rm <filename>
-  
+
 4. add file locally to    : git add <filename>
    staging area
   4.1 remove file from    : git reset HEAD <filename>
@@ -114,7 +114,7 @@ git add file_name
 # adding all files using wildcards
 git add *
 
-# removing added file 
+# removing added file
 git rm file_name
 
 # removing added directory recursively
@@ -128,7 +128,7 @@ git reset HEAD -- <file>
 # If you need to remove a whole directory (folder) from the staging area
 git reset HEAD -- <directoryName>
 
-# Your modifications will be kept. When you run git status the file will once 
+# Your modifications will be kept. When you run git status the file will once
 # again show up as modified but not yet staged.
 
 # commiting all files to the stating area / online server
@@ -140,10 +140,10 @@ git log --pretty=oneline
 git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 
 
-# remote 
+# remote
 git remote add https://github.com/abhijeetchopra/new-repo/abc.git
 
-# remote config in current directory 
+# remote config in current directory
 git remote -v
 
 # pushing, the -u parameter tell git to remember the parameters so next time we can write just : git push
@@ -160,7 +160,7 @@ git diff HEAD
 # unstage, unstaging files from repo
 git reset new-repo/readme.txt
 
-# Files can be changed back to how they were at the last commit by using the 
+# Files can be changed back to how they were at the last commit by using the
 # command: git checkout -- <target_file_tobe_undo-ed>
 git checkout -- readme.txt
 
