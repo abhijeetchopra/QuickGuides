@@ -2,5 +2,7 @@
 
 ### Shortcuts
 
-| Shortcut | Action |
-| Ctrl + Shift + m | Open Markdown Preview (needs markdown-preview package) |
+| Command | Description |
+| --- | --- |
+| `ctrl + shift + p` | Opens Atom Command Palette |
+| `ctrl + shift + m` | Opens markdown preview tab. Needs the `markdown-preview` package installed |
