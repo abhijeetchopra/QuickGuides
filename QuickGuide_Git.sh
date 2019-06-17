@@ -101,7 +101,7 @@ ls
    staging area
   4.1 remove file from    : git reset HEAD <filename>
       stating area
-5. commit file locally    : git commit <filename> -m "<message>"
+5. commit file locally    : git commit <filename> -m "message"
   5.1
 6. push changes to server : git push -u origin master
 7. pull from server       : git pull origin master
@@ -167,6 +167,34 @@ git reset new-repo/readme.txt
 # Files can be changed back to how they were at the last commit by using the
 # command: git checkout -- <target_file_tobe_undo-ed>
 git checkout -- readme.txt
+
+
+
+# GITHUB
+#---------------------------------------
+
+# GitHub with SSH
+
+# Generate SSH key pair
+ssh-keygen -t rsa
+
+id_rsa # to be configured on your local shell
+id_rsa.pub # to be configured on GitHub
+
+# Windows: Install GitHub Desktop
+# OR
+# start ssh agent manually on every console session and add the identity key
+eval `ssh-agent -s`               # starting the ssh agent
+ssh-add /path/to/my_private_key   # adding private key to agent
+ssh-add -l                        # list the identities on the agent
+
+# adding public key to GitHub account under profile > settings > SSH keys
+
+# After enabling 2FA, you need to change your remote URLs from HTTPS to SSH
+git remote -v # verify remote URL
+git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
+
+
 
 
 # END OF FILE
