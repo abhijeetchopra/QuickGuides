@@ -275,6 +275,57 @@ git remote -v
 git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 ```
 
+## Fork
+In GitHub website, browse to the repository you want to fork and click on "Fork".
+After a few seconds, you should arrive at your 'personal' fork of the repository. Use the https/ssh links to clone it to your system locally.
+
+`git clone <fork clone url>`
+
+## Branch
+```
+# navigate to your repo
+cd my_repo
+
+# create a new branch locally
+git checkout -b new-branch
+
+# pushing the branch to the remote
+git push --set-upstream origin new-branch
+
+```
+
+Make changes to branch  
+`git add <filename>`
+
+
+## Sync your fork
+
+**origin** - your fork repo  
+**upstream** - your fork's parent repo
+
+```
+# change current branch to master
+git checkout master
+
+# add ; only need this once
+git remote add upstream <fork's parent repo clone link>
+
+# verify remote links
+git remote -v
+
+# fetch changes from 'upstream' remote
+git fetch upstream
+
+# merge changes between fetched 'upstream' remote and local repo
+git merge upstream/master
+
+# push local repo changes to origin i.e. from your local fork repo to remote fork
+git push
+```
+
+
+## Pull Request
+
 # References
 1. https://git-scm.com/docs/
 2. http://gitimmersion.com
