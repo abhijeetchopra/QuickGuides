@@ -15,7 +15,7 @@ Unix Philosophy : Do one thing. Do it well.
 # INSTALLATION
 ################################################################################
 
-# Linux Installation on Virtual Machine 
+# Linux Installation on Virtual Machine
 #---------------------------------------
 # Installing guest OS: "CentOS 7" on host OS: "Windows 10" over Oracle VM VirtualBox
 1. Start VirtualBox > New > Name: "CentOS 7", Type: "Linux", Version: "Red Hat(64-bit)" > Next > Memory Size: "2048 MB" > Hard Disk: "Virtual" > Type: "VDI" > Allocation: "Dynamic" > Next
@@ -27,12 +27,12 @@ Unix Philosophy : Do one thing. Do it well.
 3. Oracle VM VirtualBox > CentOS 7 > Machine > Clone > Name: "CentOS 7 DVD"
 
 # Initial setup configuration
-4. Oracle VM VirtualBox > CentOS 7 DVD > Start > Select Startup disk: select downloaded ISO file path > Language: "English" > Continue > Date and Time > Base Environment: "Server with GUI" 
+4. Oracle VM VirtualBox > CentOS 7 DVD > Start > Select Startup disk: select downloaded ISO file path > Language: "English" > Continue > Date and Time > Base Environment: "Server with GUI"
 
 5. Installation Destination: Other Storage Options > I will configure partitioning > Automatically create partition > Begin Installation
 
 # Creating Users - First user has to be made admin
-6. 
+6.
 
 # Creating Base Installation Snapshot
 7.
@@ -42,7 +42,7 @@ Unix Philosophy : Do one thing. Do it well.
 OR
 8.2 Applications > System tools > Software Update
 OR
-8.3 Applications > Favorites > Terminal > 
+8.3 Applications > Favorites > Terminal >
 sudo yum update
 
 # Installing development tools for seamless integration with host OS
@@ -72,7 +72,7 @@ sudo yum install gnome-shell-browser-plugin
 # --------------------------------------
 Ctrl + A                          : Move to beginning of line
 Ctrl + E                          : Move to end of line
-Ctrl + Shift + Upward Arrow Key   : Scroll Up 
+Ctrl + Shift + Upward Arrow Key   : Scroll Up
 Ctrl + Shift + Downward Arrow key : Scroll Down
 Ctrk + Left Arrow Key             : One Word Left
 Ctrl + Right Arrow Key            : One Word Right
@@ -82,7 +82,7 @@ Ctrl + Right Arrow Key            : One Word Right
 # --------------------------------------
 man <command>
 
-# example: 
+# example:
 man grep
 Output: Displays manual pages for "grep" command
 
@@ -101,8 +101,8 @@ ls -l    # list
    -lah  # all three options at once
 
 # options with one dash can be combined e.g. "$ls -l -a -h" = "$ls -lah"
-# options with two dashes cannot be combined  
-   
+# options with two dashes cannot be combined
+
 
 # cat - print file contents / concatenate
 # --------------------------------------
@@ -117,7 +117,7 @@ cd ~ # changes current directory to home directory
 cd .. # go to parent directory
 cd /  # go to root directory
 
- 
+
 # home - tilde (~) character denotes home folder
 # --------------------------------------
 ~/ means home directory
@@ -127,13 +127,13 @@ cd /  # go to root directory
 
 # mkdir - make directory / create folder
 # --------------------------------------
-mkdir <dir_name> 
+mkdir <dir_name>
 mkdir {dir_1, dir_2, dir_3} # creates multiple directories in one command
 mkdir dir_{1..100} # creates 100 directories using bracket expansion
 mkdir -p dir{1..4}/parent{1..4}/child{one,two,three}
 
 
-# touch - create new empty file / update timestamp of existing file 
+# touch - create new empty file / update timestamp of existing file
 # --------------------------------------
 touch <filename>
 touch demo
@@ -147,7 +147,7 @@ nano <filename>
 gedit <filename>
 emacs <filename>
 
-# vi - two modes: normal (default) & insert (press i) 
+# vi - two modes: normal (default) & insert (press i)
 normal -> insert : press 'i'
 insert -> normal : press 'Esc'
 
@@ -196,16 +196,16 @@ rm -f <filename>
 # force delete directory - deletes write protected dir/files
 rm -rf <directory_name>
 
-# delete empty dir 
+# delete empty dir
 rmdir <directory_name>
 
 
 # grep - searches for text in file/input
 # --------------------------------------
 grep -i "root" /etc/passwd
-command : "grep" used for searching text
+# command : "grep" used for searching text
 options : "-i" for ignore case sensitive search
-arguments : "/etc/passwd" which is the file path 
+arguments : "/etc/passwd" which is the file path
 
 grep "the" poems
 grep -n "the" poems    # prints the line numbers
@@ -216,8 +216,7 @@ grep -n "the" poems    # prints the line numbers
 
 grep "word1" <filename> | grep "word2" # to grep for 2 words existing on the same line
 
-	   
-	   
+
 # awk - extract/modify file/stream
 # --------------------------------------
 awk '{print $2}' simple_data.txt # prints 2nd column of space/tab separated values
@@ -251,9 +250,9 @@ sort -u simple_data.txt   # unique results only
 
 rev simple_data.txt # prints file reverse / flip vertically
 tac simple_data.txt # prints file backwards / flip horizontally
- 
-cat simple_data.txt | tr [:lower:][:upper:] # 
- 
+
+cat simple_data.txt | tr [:lower:][:upper:] #
+
 cat file.txt | sort | uniq # unique rows only
 
 
@@ -272,24 +271,39 @@ mkdir demo
 echo "first file" > file_01
 echo "second file" > file_02
 # we are not making file_03 so next command will print error
-cat file_01 file_02 file_03 1> output.log 2>&1 
+cat file_01 file_02 file_03 1> output.log 2>&1
 # 1 is output(stdout), 2 is error(stderr)
 # 1> output.log  - means stdout redirects/goes to output.log
 # 2>&1           - means stderr redirects/goes to &1 (&1 is variable)
-# &1 stores what 1 is defined, which we prev. def. as output.log 
+# &1 stores what 1 is defined, which we prev. def. as output.log
 # so effectively, both stdout and stderr going to output.log
 
 source: https://unix.stackexchange.com/a/37662/291648
 
+# 1. <<< denotes a string
+$ cat <<< 'hi there'
+hi there
+
+# 2. << denotes a document
+$ cat << EOF
+> hi there
+> how are you
+> EOF
+hi there
+how are you
+
+# 3. < passes the contents of a file to a command's standard input
+$ cat < ./readme.txt
+this is some text in the readme.txt file
 
 # stat - print file status
 # --------------------------------------
 stat <filename>
 
- 
+
 # wildcards
 # --------------------------------------
- * - any number of characters 
+ * - any number of characters
  ? - any one character
 
 
@@ -357,7 +371,7 @@ SGID - elevates privileges to the file group when executed
 # --------------------------------------
 
 # get entry
-getent passwd 
+getent passwd
 getent group
 
 # /etc/passwd
@@ -368,7 +382,7 @@ delimited by colons (“:”). These fields are:
 
 abhijeetchopra:x:1000:1001:Abhijeet Chopra:/home/abhijeetchopra:/bin/bash
 
-1.  abhijeetchopra        - login name 
+1.  abhijeetchopra        - login name
 2.  x                     - optional encrypted password
 3.  1000                  - numerical user ID
 4.  1001                  - numerical group ID
@@ -416,12 +430,12 @@ p : named pipe
 | | | .............. x: user has execute permission  | -: no permission
 | | | | ............ r: group has read permission    | -: no permission
 | | | | | .......... w: group has write permission   | -: no permission
-| | | | | | ........ x: group has execute permission | -: no permission 
+| | | | | | ........ x: group has execute permission | -: no permission
 | | | | | | | ...... r: other has read permission    | -: no permission
 | | | | | | | | .... w: other has write permission   | -: no permission
-| | | | | | | | | .. x: other has execute permission | -: no permission 
-| | | | | | | | | | 
-d r w x r w x r w x 
+| | | | | | | | | .. x: other has execute permission | -: no permission
+| | | | | | | | | |
+d r w x r w x r w x
 
 
 ls -ali
@@ -443,10 +457,10 @@ touch testfile.txt # creates a blank textfile, default permissions are 666
 # Two ways to change permissions: 1. Octal and 2. Symbolic
 
 # Octal: user,group,other(XXX) get read,write,modify (5+1+1 = 7)
-chmod 777 testfile.txt 
+chmod 777 testfile.txt
 
 # Symbolic: user,group,other(u,g,o) get read,write,modify (all = +a)
-chmod u=a,g=a,o=a testfile.txt  
+chmod u=a,g=a,o=a testfile.txt
 
 
 
@@ -473,13 +487,13 @@ total   (7) | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
 One digit represents either user or group or others
 Put them all together to get three digits like 704
 
-First digit  7 - user : 4+2+1 : read + write + execute 
+First digit  7 - user : 4+2+1 : read + write + execute
 Second digit 0 - group : 0 : no permission
-Third digit  4 - others : read 
+Third digit  4 - others : read
 
 #Example 777
-First digit  7 - user : 4+2+1 : read + write + execute 
-Second digit 0 - group : 4+2+1 : read + write + execute 
+First digit  7 - user : 4+2+1 : read + write + execute
+Second digit 0 - group : 4+2+1 : read + write + execute
 Third digit  4 - others : 4+2+1 : r + w + x
 
 # Symbolic
@@ -537,7 +551,7 @@ lsattr <filename>
 echo "hello world" | wc # prints the word-count of string "hello"
 Output: 1  2  12  # Lines, Words, Characters
 
-cat poems.txt | cat -n | tail -4 
+cat poems.txt | cat -n | tail -4
 # print file | print line no.s | print last 4 - 97,98,99,100
 
 cat poems.txt | tail -4 | cat -4
@@ -595,7 +609,7 @@ tar -xvf backup.tar
       -v # verbose / print warnings/messages
       -f # file
 
-	  
+
 # Extracting tar.gz
 
 git clone https://github.com/abhijeetchopra/Assembly/blob/master/Masm615_Download.zip
@@ -692,7 +706,7 @@ man rpm # for more info
 # --------------------------------------
 mkdir ~/tmp/packages
 
-sudo yum install -y yum-plugin-downloadonly 
+sudo yum install -y yum-plugin-downloadonly
 # > now we can use --downloadonly option while installing with yum
 
 sudo yum install --downloadonly --downloaddir = ~/tmp/packages http  # http pkg
@@ -704,7 +718,7 @@ sudo rpm -ivh <package file name> # i:install, v:verbose, h:hash
 
 #Note: sometimes failed dependencies are not installed. Google the error.
 
-rpm -qlp <package file name> # q:query, l:list, p:package 
+rpm -qlp <package file name> # q:query, l:list, p:package
 
 
 # Uninstalling/removing programs with RPM
@@ -778,20 +792,20 @@ su -c 'yum update'
 # --------------------------------------
 
 # print processes in current shell
-ps 
+ps
 
 # ps command with arguments
 ps -aux
    -a # print "all" processes
-   -u # 
+   -u #
    -x # print processes owned by user "x"
    -f # full format
    -F # extra full format
-   
+
 # NOTE: UNIX vs BDS syntax
 # "$ps -aux" is distinct from "$ps aux" without the dash "-" sign
 
-# output 
+# output
 # PID - process ID
 # CMD - executable name
 # TTY - terminal associated with process
@@ -877,7 +891,7 @@ dd if=/dev/urandom of=sample.txt bs=1MB count=1024
 # scp is secured and encrypted but slow
 # rsync is fast and has optimization features
 
-# scp 
+# scp
 #   1. copy from A to B if logged into A
 scp /source username@b:/destination
 
@@ -892,13 +906,13 @@ touch ~/A/file_0{1-9}          # populating dir A with dummy files
 mkdir ~/B                      # creating empty dir B
 rsync -av srchost:~/A/ ~/B/ # transfering files from A to B
 
-# -a: archive mode - no hardlinks, don't preserve ACLs, cross filesystem 
+# -a: archive mode - no hardlinks, don't preserve ACLs, cross filesystem
 # -v: verbose
 # -u: update - replaces files only if different filename/size/time
 # -z: compression
 
 touch ~/A/file_{11-99}         # creating more dummy files
-touch ~/A/file_100             # 
+touch ~/A/file_100             #
 rsync -uav ~/A/ ~/B/ # transfering only new data
 
 
@@ -947,13 +961,13 @@ crontab -u root -l
 3. Ctrl + Shift + Up : Scroll Up
 4. Ctrl + Shift + Down : Scroll Down
 5. Ctrl + Left Arrow Key : One Word Left
-6. Ctrl + Right Arrow Key : One Word Right 
+6. Ctrl + Right Arrow Key : One Word Right
 
 
 # compare files line by line
 # --------------------------------------
 diff <filename> <filename>
-     -s: report identical files 
+     -s: report identical files
 	 -y: side by side output in two columns
 
 # Working between Windows and Linux

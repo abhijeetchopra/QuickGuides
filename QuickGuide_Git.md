@@ -98,7 +98,7 @@ git remote add origin <GitHub remote repository URL>
 # verify the new remote URL
 git remote -v
 
-# push local repo changes up the remote repo
+# push local repo changes up the remote 'origin' repo
 git push origin master
 
 # check status
@@ -240,6 +240,104 @@ Unstaging files from repo
 Revert changes in file to how they were at the last commit  
 `git checkout -- <filename>`
 
+
+
+## Fork
+In GitHub website, browse to the repository you want to fork and click on "Fork".
+After a few seconds, you should arrive at your 'personal' fork of the repository. Use the https/ssh links to clone it to your system locally.
+
+`git clone <fork clone url>`
+
+## Sync your fork
+
+**origin** - your fork repo  
+**upstream** - your fork's parent repo
+
+```
+# change current branch to master
+git checkout master
+
+# add ; only need this once
+git remote add upstream <fork's parent repo clone link>
+
+# verify remote links
+git remote -v
+
+# fetch changes from 'upstream' remote
+git fetch upstream
+
+# merge changes between fetched 'upstream' remote and local repo
+git merge upstream/master
+
+# push local repo changes to origin i.e. from your local fork repo to remote fork
+git push
+```
+
+## Branch
+##### Create New Branch
+```
+# navigate to your repo
+cd my_repo
+
+# create a new branch locally
+git checkout -b new-branch
+
+# pushing the branch to the remote
+git push --set-upstream origin new-branch
+
+# make changes to branch  
+git add <filename>
+
+```
+
+##### View Branches
+```
+git branch       # local branches
+git branch -v    # verbose
+git branch -r    # remote branches
+git branch -rv   # remote + verbose
+git branch -a    # all
+
+# show commit ancestry graph
+git show-branch
+git show-branch --current
+
+git ls-remote [remote]
+git remote show [remote]
+
+```
+
+##### Checkout Remote Branch
+```
+git checkout -t <name of remote>/branch_name
+```
+
+##### Delete Local Branch
+```
+# -d is alias for --delete
+# only deletes branch if it has already been fully merged in its upstream branch
+git branch -d branch_name
+
+# -D is alias for --delete-force
+# deletes branch irrespective of it's merged status
+git branch -D branch_name
+```
+##### Delete Remote Branch
+```
+git push <remote_name> --delete <branch_name>
+```
+
+##### Branch Housekeeping
+If a branch is deleted on server but still exists on your local repo, use prune to clean up your local repo. This command will remove branches from your local repo that don't exist on server anymore. This will not delete independent local branches that never existed on the server.   
+```
+git fetch --all --prune
+```
+
+
+
+
+## Pull Request
+
 ## GitHub
 
 ### GitHub with SSH
@@ -274,57 +372,6 @@ git remote -v
 # set remote url
 git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 ```
-
-## Fork
-In GitHub website, browse to the repository you want to fork and click on "Fork".
-After a few seconds, you should arrive at your 'personal' fork of the repository. Use the https/ssh links to clone it to your system locally.
-
-`git clone <fork clone url>`
-
-## Branch
-```
-# navigate to your repo
-cd my_repo
-
-# create a new branch locally
-git checkout -b new-branch
-
-# pushing the branch to the remote
-git push --set-upstream origin new-branch
-
-```
-
-Make changes to branch  
-`git add <filename>`
-
-
-## Sync your fork
-
-**origin** - your fork repo  
-**upstream** - your fork's parent repo
-
-```
-# change current branch to master
-git checkout master
-
-# add ; only need this once
-git remote add upstream <fork's parent repo clone link>
-
-# verify remote links
-git remote -v
-
-# fetch changes from 'upstream' remote
-git fetch upstream
-
-# merge changes between fetched 'upstream' remote and local repo
-git merge upstream/master
-
-# push local repo changes to origin i.e. from your local fork repo to remote fork
-git push
-```
-
-
-## Pull Request
 
 # References
 1. https://git-scm.com/docs/
