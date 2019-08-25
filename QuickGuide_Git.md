@@ -197,7 +197,7 @@ NOTE: Your modifications will be kept. When you run git status the file will onc
 ##### Committing all files to the stating area / online server
 `git commit -m "Adding new files"`
 
-##### Browse changes in log - with different formatting options
+##### git log | Browse changes in log - with different formatting options
 ```
 git log
 git log --pretty=oneline
@@ -209,6 +209,9 @@ Commits on origin/master but not yet on master
 
 Commits on master but not yet on origin/master  
 `git log origin/master..master`
+
+##### git show | Browse changes in files
+`git show master..origin/master`
 
 ## Remote
 Add remote in current directory/repo  
