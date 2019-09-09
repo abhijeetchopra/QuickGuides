@@ -243,6 +243,8 @@ Unstaging files from repo
 Revert changes in file to how they were at the last commit  
 `git checkout -- <filename>`
 
+Revert repo to a previous commit and delete any changes made after the commit  
+`git reset --hard <commit hash>`
 
 
 ## Fork
@@ -378,4 +380,94 @@ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 
 # References
 1. https://git-scm.com/docs/
-2. http://gitimmersion.com
+2. https://gitimmersion.com
+3. https://lab.github.com
+4. https://www.linkedin.com/learning/github-essential-training/version-control-and-collaboration-with-github  
+
+
+
+
+# Commit Messages
+
+##### Rules to live by for commit messages:  
+
+* Don’t end your commit message with a period.  
+* Keep your commit messages to 50 characters or less.  
+* Use active voice. E.g., "add" instead of "added" and "merge" instead of "merged".  
+* Think of your commit as expressing intent to introduce a change.  
+
+
+# GitHub Learning Lab
+
+* https://youtu.be/PBI2Rz-ZOxU
+* https://lab.github.com
+* https://lab.github.com/courses
+
+
+# GitHub Workflow
+
+Master / Main / Production Branch  
+
+* Security concerns  
+* Automated testing  
+* Code reviews  
+* Issues / Projects  
+
+## Security Concerns
+
+### Branch Protections
+
+    GitHub > repo > settings > branches > add branch protection rule
+
+1. Require pull request reviews before merging
+2. Require status checks to pass before merging
+3. Require signed commits
+4. Include administrators
+5. Restrict who can push to matching branches
+
+#####  1. Protecting the Master Branch
+
+1. Block direct changes made to master
+2. Only authorized users can bypass
+3. Can be applied to any branch, not just master
+
+##### 2. Pull Request Reviews
+
+1. Require at least one approving review
+2. Better accountability for reviewers
+3. Better accountability for pull request authors
+
+##### 3. Merge Protections
+
+1. Restrict who can push merge
+2. Comply with organization requirements
+3. Can be authorized users or teams
+
+##### 4. Status Checks on Commits
+
+1. Automated control
+2. Consistency with each commit
+3. Reduces the amount of bugs pushed to production
+
+## Continuous Integration (CI)
+
+Automatically building and testing code
+
+1. Adheres to your team's quality standards
+2. Reduces context switching
+3. Improves consistency for testing
+4. Reduces bugs in production
+
+## Continuous Delivery (CD)
+
+1. Production ready with every commit
+2. Being production ready dowsn't always translate to releasing new code every time
+3. Gives you the flexibility to release as often as you want
+
+## Continuous Deployment (CD++)
+1. Takes continuous delivery one step further
+2. Automated in the background, no human intervention
+
+
+
+
