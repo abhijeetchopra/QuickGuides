@@ -58,6 +58,10 @@ Output:
   - [ ] Task 2
   - [ ] Task 3
 
+## Escape Characters
+
+Escaping backtics: use a higher number of backtics  
+``` ``text`1`` ``` produces ``` text`1 ```  
 
 ----------------------------------------
 ## References
