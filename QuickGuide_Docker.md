@@ -47,9 +47,26 @@ RUN apt-get install python
 RUN pip install flask
 RUN pip install flask-mysql
 
+# Add files
+ADD ./localfile /root/.containerfile
+
+# Copy files from source/host to destination/container
 COPY . /opt/source-code
 
+# Set environment variables
+ENV HOME /root
+
+# Define working directory
+WORKDIR /root
+
+# Shell form
 ENTRYPOINT FLASK_APP=/opt/source-code/app.py flask run
+#CMD=
+
+# Exec form
+#ENTRYPOINT [ "FLASK_APP=/opt/source-code/app.py", "flask", "run"]
+#CMD=
+
 ```
 
 ##### Exec form
@@ -103,3 +120,291 @@ docker build Dockerfile -t achopra/my_custom_app
 docker history <>
 docker history <> --no-trunc
 ```
+
+## Networking
+
+```
+docker network ls # list all networks
+docker inspect <> # look under NetworkSettings
+```
+
+##### Default networks
+
+1. Bridge (default)  
+   `docker run ubuntu`
+   Container can be mapped to host network
+   All containers on a bridge and can talk to each other
+
+2. Host  
+   `docker run ubuntu --network=host`
+   Containers runs on same network as host
+
+3. None  
+   `docker run ubuntu --network=none`
+   Containers runs on isolated network
+
+##### User-defined networks
+
+```
+docker network create \
+    --driver bridge \
+    --subnet 182.18.0.0/16
+    custom-isolated-network
+```
+
+##### Embedded DNS
+
+Docker Embedded DNS Server runs at 127.0.0.11
+
+```
+mysql.connect(<IP>)
+OR
+mysql.connect(<>)
+```
+
+## Storage
+
+##### File System
+
+/var/lib/docker
+|--aufs
+|--containers
+|--images
+|--volumes
+
+##### Layered Architecture
+
+Image layer - Read only
+
+Container layer - Read Write
+
+##### Volume Mounts
+
+```
+# creating local volume
+docker volume create data_volume
+
+# volume is created on docker host (default path)
+/var/lib/docker
+|--volumes
+   |--data_volume
+
+# volume mounting host to container
+docker run -v data_volume:/var/lib/mysql mysql
+```
+
+##### Bind Mounts
+
+```
+# bind mounting host to container
+docker run -v /data/mysql:/var/lib/mysql mysql
+```
+
+##### New notation for mounting
+```
+docker run \
+    --mount type=bind,source=/data/mysql,target=/var/lib/mysql mysql
+```
+
+##### Storage Drivers
+ - AUFS
+ - ZFS
+ - BTRFS
+ - Device Mapper
+ - Overlay
+ - Overlay2
+
+## Docker Compose
+ 
+ ##### Docker Compose Example
+ 
+ ```
+ services:
+    web:
+        image: "abhijeetchopra/simple-webapp"
+    database:
+        image: "mongodb"
+    messaging:
+        image: "redis:alpine"
+    orchestration:
+        image: "ansible"
+ ```
+
+##### Sample application
+
+1. voting-app: python
+2. in-memory DB: redis
+3. worker: .net
+4. db: postgreSQL
+5. result-app: node.js
+
+```
+# assuming images referenced below are already built and available: 
+
+docker run -d --name=redis redis
+docker run -d --name=db postgres:9.4
+docker run -d --name=vote -p 5000:80 voting-app
+docker run -d --name=result -p 5001:80 result-app
+docker run -d --name=worker worker
+```
+
+##### Linking 
+
+```
+... --link <container>:<host>...
+```
+
+```
+# modifying same commands as above with linking 
+
+docker run -d --name=redis redis
+docker run -d --name=db --link db:db postgres:9.4
+docker run -d --name=vote -p 5000:80 --link redis:redis voting-app
+docker run -d --name=result -p 5001:80 result-app
+docker run -d --name=worker --link db:db -link redis:redis worker
+```
+
+##### Docker Compose from above example
+
+1. Dictionary of container names
+2. Image
+3. Ports
+4. Links
+
+```
+# docker-compose.yml
+
+redis:
+    image: redis
+db:
+    image: postgres:9.4
+vote:
+    image: voting-app
+    ports:
+        - 5000:80
+    links:
+        - redis
+result:
+    image: result-app
+    ports:
+        - 5001:80
+    links:
+        - db
+worker:
+    image: worker
+    links:
+        - redis
+        - db
+```
+
+##### Building Images from Dockerfiles with Docker Compose
+
+```
+# docker-compose.yml
+
+redis:
+    image: redis
+db:
+    image: postgres:9.4
+vote:
+    build: ./vote
+    ports:
+        - 5000:80
+    links:
+        - redis
+result:
+    build: ./result
+    ports:
+        - 5001:80
+    links:
+        - db
+worker:
+    build: ./worker
+    links:
+        - redis
+        - db
+```
+
+##### Docker Compose v3
+
+1. Specify version 
+2. Services
+3. Default network is dedicated bridged network instead of a linked default  
+   bridged network. No need to specify links as each container is on the same  
+   dedicated bridged network and containers can reference by name
+4. Dependencies can be specified
+
+```
+# docker-compose.yml
+version: 2
+services:
+    redis:
+        image: redis
+    db:
+        image: postgres:9.4
+    vote:
+        build: ./vote
+        ports:
+            - 5000:80
+        depends_on:
+            - redis
+    result:
+        build: ./result
+        ports:
+            - 5001:80
+    worker:
+        build: ./worker
+```
+
+##### Networks
+
+```
+# docker-compose.yml
+version: 2
+services:
+    redis:
+        image: redis
+        networks:
+            - back-end
+    db:
+        image: postgres:9.4
+        networks:
+            - back-end
+    vote:
+        build: ./vote
+        ports:
+            - 5000:80
+        depends_on:
+            - redis
+        networks:
+            - front-end
+            - back-end
+    result:
+        build: ./result
+        ports:
+            - 5001:80
+        networks:
+            - front-end
+            - back-end
+    worker:
+        build: ./worker
+        networks:
+            - front-end
+            - back-end
+networks:
+    front-end:
+    back-end:
+```
+
+
+##### Docker Compose v3
+
+1. Specify version 3
+2. #TODO
+
+
+
+
+# References
+ - https://freecodecamp.org
+ - https://docs.docker.com
