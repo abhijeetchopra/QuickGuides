@@ -19,3 +19,11 @@
 | `ctrl + shift + g` | Go to folder path |
 | `ctrl + del` | Move to trash |
 | `ctrl + shift + del` | Delete permanently |
+
+### Terminal
+
+| Command | Description |
+| --- | --- |
+| `brew services list` | list all services |
+| `brew services stop nginx` | stop nginx service |
+| `lsof -i tcp -nP | grep 80` | list all files using tcp protocol, with network numbers and portnumbers, then greps for 80 |
