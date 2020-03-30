@@ -1,8 +1,6 @@
-"""
-# Auth: Abhijeet Chopra
-# Date: Sat Sep 23, 2017
-# Desc: Quick Python Guide
-"""
+# QuickGuide | Python
+
+```python
 # declaring and initializing variables
 name = 'Abhijeet'
 height = 5.4
@@ -264,3 +262,4 @@ print("x : ", x, " y : ", y) # this would print in the next line than previous
 
 """ END OF FILE
 -------------------------------------"""
+```

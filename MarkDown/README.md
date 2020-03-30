@@ -9,7 +9,6 @@
 | `~~Strikethrough~~` | ~~Strikethrough~~ |
 | ``  `git add 'code.md'``` | `git add 'code.md'` |
 
-
 ## Code
 
 Syntax:

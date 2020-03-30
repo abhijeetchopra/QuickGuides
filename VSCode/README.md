@@ -11,7 +11,6 @@
 | `alt + upward arrow` | Moves line up |
 | `alt + downward arrow` | Moves line down |
 
-
 ### Mac
 
 | Command | Description |

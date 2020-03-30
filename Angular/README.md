@@ -1,9 +1,6 @@
-/* -------------------------------------
- * Auth: Abhijeet Chopra
- * Date: Sun Sep 24, 2017
- * Desc: Quick Conda Guide
- * ---------------------------------- */
+# QuickGuide | Angular
 
+```xhtml
 /* ADDING ANGULAR SCRIPT TO WEBPAGE
 ------------------------------------- */
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
@@ -178,9 +175,10 @@ Input fields control the fields directly below them:
 
 <p>The name is {{ person.lastName }}</p>
 
-</div> 
+</div>
 
 
 
 /* END OF FILE
 -------------------------------------- */
+```

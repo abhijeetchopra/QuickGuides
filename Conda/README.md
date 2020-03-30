@@ -1,11 +1,6 @@
-# --------------------------------------
-# Auth: Abhijeet Chopra
-# Date: Sun Sep 24, 2017
-# Desc: Quick Conda Guide
-# --------------------------------------
+# QuickGuide | Conda
 
-
-
+```bash
 # verify that conda is installed
 conda --version
 # update conda to the current version
@@ -89,15 +84,6 @@ conda update anaconda-navigator
 # To update Spyder
 conda update spyder
 
-
-
-
-
-
-
-
-
-
-
 # END OF FILE
 # --------------------------------------
+```

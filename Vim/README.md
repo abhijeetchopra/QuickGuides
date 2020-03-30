@@ -48,9 +48,5 @@ Press `i` in command mode to switch to insert mode
 | `gg` | moves the cursor to the beginning of the line |
 | `G` | moves the cursor to the end of the file |
 
-
-
-
-
 ## References
  - https://www.maketecheasier.com/vim-keyboard-shortcuts-cheatsheet/

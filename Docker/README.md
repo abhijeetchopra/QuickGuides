@@ -2,7 +2,7 @@
 
 ## Commands
 
-```
+```docker
 # <> = <container/image name/id>
 
 docker version
@@ -38,7 +38,7 @@ docker run -e APP_CLR=blue <> # export env variable
 
 ##### Dockerfile example
 
-```
+```dockerfile
 FROM Ubuntu
 
 RUN apt-get update
@@ -71,25 +71,27 @@ ENTRYPOINT FLASK_APP=/opt/source-code/app.py flask run
 
 ##### Exec form
 
-```
+```dockerfile
 ENTRYPOINT ["executable", "arg1", "arg2"]
 CMD ["executable", "arg1", "arg2"]
 ```
 
 Putting these together the default argument to the container will be:
-```
+
+```dockerfile
 ["executable", "arg1", "arg2", "executable", "arg1", "arg2"]
 ```
 
 Approximates shell command:
-```
+
+```dockerfile
 executable arg1 arg2 executable arg1 arg2
 ```
 
 
 ##### Shell form
 
-```
+```dockerfile
 ENTRYPOINT executable arg1 arg2
 CMD executable arg1 arg2
 ```
@@ -97,25 +99,25 @@ CMD executable arg1 arg2
 
 ##### Override CMD
 
-```
+```docker
 docker run <> /new/cmd/ arg1 arg2
 ```
 
 ##### Override ENTRYPOINT
 
-```
+```docker
 docker run --entrypoint /new/entrypoint <>
 ```
 
 ##### Override both CMD and ENTRYPOINT
 
-```
+```docker
 docker run --entrypoint /new/entrypoint <> /new/cmd arg1 arg2
 ```
 
 ##### Build
 
-```
+```docker
 docker build Dockerfile -t achopra/my_custom_app
 docker history <>
 docker history <> --no-trunc
@@ -123,7 +125,7 @@ docker history <> --no-trunc
 
 ## Networking
 
-```
+```docker
 docker network ls # list all networks
 docker inspect <> # look under NetworkSettings
 ```
@@ -145,7 +147,7 @@ docker inspect <> # look under NetworkSettings
 
 ##### User-defined networks
 
-```
+```docker
 docker network create \
     --driver bridge \
     --subnet 182.18.0.0/16
@@ -156,7 +158,7 @@ docker network create \
 
 Docker Embedded DNS Server runs at 127.0.0.11
 
-```
+```docker
 mysql.connect(<IP>)
 OR
 mysql.connect(<>)
@@ -180,7 +182,7 @@ Container layer - Read Write
 
 ##### Volume Mounts
 
-```
+```docker
 # creating local volume
 docker volume create data_volume
 
@@ -195,18 +197,20 @@ docker run -v data_volume:/var/lib/mysql mysql
 
 ##### Bind Mounts
 
-```
+```docker
 # bind mounting host to container
 docker run -v /data/mysql:/var/lib/mysql mysql
 ```
 
 ##### New notation for mounting
-```
+
+```docker
 docker run \
     --mount type=bind,source=/data/mysql,target=/var/lib/mysql mysql
 ```
 
 ##### Storage Drivers
+
  - AUFS
  - ZFS
  - BTRFS
@@ -216,9 +220,9 @@ docker run \
 
 ## Docker Compose
  
- ##### Docker Compose Example
+##### Docker Compose Example
  
- ```
+ ```dockerfile
  services:
     web:
         image: "abhijeetchopra/simple-webapp"
@@ -238,7 +242,7 @@ docker run \
 4. db: postgreSQL
 5. result-app: node.js
 
-```
+```dockerfile
 # assuming images referenced below are already built and available: 
 
 docker run -d --name=redis redis
@@ -250,11 +254,11 @@ docker run -d --name=worker worker
 
 ##### Linking 
 
-```
+```dockerfile
 ... --link <container>:<host>...
 ```
 
-```
+```dockerfile
 # modifying same commands as above with linking 
 
 docker run -d --name=redis redis
@@ -271,7 +275,7 @@ docker run -d --name=worker --link db:db -link redis:redis worker
 3. Ports
 4. Links
 
-```
+```docker
 # docker-compose.yml
 
 redis:
@@ -299,7 +303,7 @@ worker:
 
 ##### Building Images from Dockerfiles with Docker Compose
 
-```
+```docker
 # docker-compose.yml
 
 redis:
@@ -327,14 +331,14 @@ worker:
 
 ##### Docker Compose v3
 
-1. Specify version 
+1. Specify version
 2. Services
 3. Default network is dedicated bridged network instead of a linked default  
    bridged network. No need to specify links as each container is on the same  
    dedicated bridged network and containers can reference by name
 4. Dependencies can be specified
 
-```
+```docker
 # docker-compose.yml
 version: 2
 services:
@@ -358,7 +362,7 @@ services:
 
 ##### Networks
 
-```
+```docker
 # docker-compose.yml
 version: 2
 services:
@@ -396,15 +400,12 @@ networks:
     back-end:
 ```
 
-
 ##### Docker Compose v3
 
 1. Specify version 3
 2. #TODO
 
-
-
-
 # References
+
  - https://freecodecamp.org
  - https://docs.docker.com

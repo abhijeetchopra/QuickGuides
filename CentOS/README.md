@@ -1,9 +1,6 @@
-# --------------------------------------
-# Auth: Abhijeet Chopra
-# Date: Mon May 23, 2018
-# Desc: Quick CentOS Guide
-# --------------------------------------
+# QuickGuice | CentOS
 
+```bash
 LINUX - 1991 by Linus Torvalds
 
 Major Distros - Arch, Debian (Ubuntu), Red Hat (CentOS, Fedora, RHEL), Slackware
@@ -994,3 +991,4 @@ RHEL - Red Hat Enterprise Linux
 
 # END OF FILE
 # --------------------------------------
+```

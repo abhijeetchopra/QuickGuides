@@ -1,4 +1,4 @@
-# curl
+# QuickGuide | Curl
 
 ## GET
 

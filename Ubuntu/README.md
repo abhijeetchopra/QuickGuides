@@ -1,9 +1,7 @@
-# --------------------------------------
-# Auth: Abhijeet Chopra
-# Date: Wed May 30, 2018
-# Desc: Quick Ubuntu Guide
-# --------------------------------------
+# QuickGuide | Ubuntu
 
+```bash
 sudo apt-get update        # Fetches the list of available updates
 sudo apt-get upgrade       # Strictly upgrades the current packages
 sudo apt-get dist-upgrade  # Installs updates (new ones)
+```
