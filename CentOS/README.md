@@ -207,9 +207,9 @@ arguments : "/etc/passwd" which is the file path
 grep "the" poems
 grep -n "the" poems    # prints the line numbers
      -in "the" poems   # ignore case & print line numbers
-	 -v "the" poems    # prints line without "the"
-	 -E "[hijk]" poems # extended/regex - either of h,i,j,k
-	 -E "\w{6,}" poems # 6 or more of word character
+     -v "the" poems    # prints line without "the"
+     -E "[hijk]" poems # extended/regex - either of h,i,j,k
+     -E "\w{6,}" poems # 6 or more of word character
 
 grep "word1" <filename> | grep "word2" # to grep for 2 words existing on the same line
 
@@ -285,7 +285,8 @@ hi there
 $ cat << EOF
 > hi there
 > how are you
-> EOF
+>
+EOF
 hi there
 how are you
 
@@ -403,6 +404,25 @@ sudo passwd <username>
 
 # system log viewer
 gnome-system-log
+
+
+# Secure Log
+# --------------------------------------
+
+# successful ssh login attempts
+cat /var/log/secure | grep 'Accepted' | awk '{print $1 " " $2 " " $3 " User: " $9 " " }'
+
+# successful ssh login attempts with IP
+cat /var/log/secure | sort | grep 'Accepted' | awk '{print $1 " " $2 " " $3 " User: " $9 " IP: " $11 }'
+
+# successful ssh login attempts from sudo users
+cat /var/log/secure | grep 'session opened for user root' | awk '{print $1 " " $2 " " $3 " Sudo User: " $13 " " }'
+
+# login attempts from non-existing and unauthorized user accounts
+cat /var/log/secure | grep 'Invalid user'
+
+# ssh login attempts by authorized ssh accounts with failed password
+cat /var/log/secure | grep -v invalid | grep 'Failed password'
 
 
 ################################################################################
@@ -659,6 +679,9 @@ df -h # disk-free space
 
 sudo du / -hd1 # disk usage
 
+du -sh
+
+du -sh *
 
 
 ################################################################################
@@ -762,8 +785,6 @@ dnf history # Fedora
 # Update CentOS
 # --------------------------------------
 su -c 'yum update'
-
-
 
 
 
@@ -965,7 +986,7 @@ crontab -u root -l
 # --------------------------------------
 diff <filename> <filename>
      -s: report identical files
-	 -y: side by side output in two columns
+     -y: side by side output in two columns
 
 # Working between Windows and Linux
 # --------------------------------------
@@ -985,9 +1006,6 @@ https://www.distrowatch.com
 # --------------------------------------
 APT - Advanced Package Tools
 RHEL - Red Hat Enterprise Linux
-
-
-
 
 # END OF FILE
 # --------------------------------------
