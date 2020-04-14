@@ -310,6 +310,9 @@ stat <filename>
 find . -name "poe*" # find all files in current dir with filename beginning "poe"
 find <scope> <option - find by name> <argument>
 
+# find in current directory, type directory, name starts with grid (/ is escaping here)
+# maximum three directories down
+find . -type d -name grid\* -maxdepth 3
 
 # file - print file type
 # --------------------------------------

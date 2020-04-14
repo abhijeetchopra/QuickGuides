@@ -42,3 +42,7 @@
 | --- | --- |
 | `ctrl + D` | split pane vertically |
 | `ctrl + shift + D` | split pane horizontally |
+| `opt + cmd + ↑` | select pane above |
+| `opt + cmd + ↓` | select pane below |
+| `opt + cmd + ←` | select pane left |
+| `opt + cmd + →` | select pane right |
