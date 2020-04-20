@@ -2,66 +2,92 @@
 
 ## Git Help
 
-##### Git User Manual
-`info git`
+### Git User Manual
 
-##### Git command Quick Reference
-`git [command] -help`
-
-##### Git command Manual Pages
+```basj
+info git
 ```
+
+### Git command Quick Reference
+
+```bash
+git [command] -help
+```
+
+### Git command Manual Pages
+
+```bash
 git help [command]
 git [command] --help
 ```
 
 ## Git Configuration
 
-##### Checking configuration settings
-`git config --list`
+### Checking configuration settings
 
-##### Checking configuration settings specific key value
+```bash
+git config --list
 ```
+
+### Checking configuration settings specific key value
+
+```bash
 git config --global <key>
 git config --global user.name
 ```
 
-##### Setting up your identity
-```
+### Setting up your identity
+
+```bash
 git config --global user.name "John Doe"
 git config --global user.email johndoe@example.com
 ```
 
-##### Setting global configuration for line endings
-On Windows, you simply pass true to the configuration (as shown below)  
-`git config --global core.autocrlf true`
+### Setting global configuration for line endings
 
+On Windows, you simply pass true to the configuration (as shown below)  
+
+```bash
+git config --global core.autocrlf true
+```
 
 ## Git Aliases
-```
+
+```bash
+# change directory to your home dir
 cd ~
+
+# open the .gitconfig file in a text editor
+$EDITOR .gitconfig
+
+# e.g. (WSL/Cygwin/Git Bash)
 notepad .gitconfig
 ```
 
-##### Add the following to the .gitconfig file in your $HOME directory
-```
+### Add the following to the .gitconfig file in your $HOME directory
+
+```gitconfig
 [alias]
-	co = checkout
-	ci = commit
-	st = status
-	br = branch
-	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
-	hist1 = log --pretty=oneline
-	type = cat-file -t
-	dump = cat-file -p
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    hist1 = log --pretty=oneline
+    type = cat-file -t
+    dump = cat-file -p
 ```
 
 ## Working with Git Repositories
+
 Two ways:
+
 1. Clone existing initialized repo from server
 2. Initialize repo locally and "remote add" to server
 
 ## Clone existing repo from server
-```
+
+```bash
 mkdir repos
 cd repos
 git clone https://abhijeetchopra@bitbucket.org/tamucinventors/basic-ke.git
@@ -69,17 +95,19 @@ git clone https://github.com/abhijeetchopra/Certifications.git
 ls
 ```
 
-##### Bash command to clone all public repos from github account
-```
+### Bash command to clone all public repos from github account
+
+```bash
 curl -sS "https://api.github.com/users/abhijeetchopra/repos?per_page=1000" | grep -w clone_url | grep -o '[^"]\+://.\+.git' | xargs -L1 git clone
 ```
 
 ## Initialize repo locally and add to server
+
 If you did not create a repo online first, then instead of cloning from web, you can create local repo, initialize empty git repository with "init" and "remote add" it to your server
 
 Create new repository in GitHub without initializing with README, license or .gitignore files.
 
-```
+```bash
 # navigate to your project directory
 cd my_repo
 
@@ -93,7 +121,7 @@ git add .
 git commit -m "First commit"
 
 # set the new remote
-git remote add origin <GitHub remote repository URL>
+git remote add origin $INSERT_GITHUB_REMOTE_REPOSITORY_URL
 
 # verify the new remote URL
 git remote -v
@@ -107,163 +135,238 @@ git status
 
 ## Workflow overview
 
-##### Working Directory
+### Working Directory
+
 > local files & changes
 
-```
+```bash
 # initialize local repo  
 git init
 
-# undo initializing   
+# undo initializing
 rm -rf .git
 
 # create new file locally
-touch <filename>
+touch $INSERT_FILENAME
 
 # modify file locally
-<editor> <filename>
+$EDITOR $INSERT_FILENAME
+
+# e.g. vim file01
 
 # save file locally
 [within editor]
 
 # delete newly created file locally
-rm <filename>
+rm $INSERT_FILENAME
 
 # restore modified file in working dir to last local commit version
-git checkout -- <filename>
+git checkout -- $INSERT_FILENAME
 ```
 
-##### Staging Area
+### Staging Area
+
 > Tracked files & changes
 
-```
+```bash
 # add file locally to staging area
-git add <filename>
+git add $INSERT_FILENAME
 
 # remove file from staging area  
-git reset HEAD <filename>
+git reset HEAD $INSERT_FILENAME
 ```
 
-##### Repository
+### Repository
+
 > Committed files & changes
 
-```
-# commit file locally    
-git commit <filename> -m "message"
+```bash
+# commit file locally
+git commit $INSERT_FILENAME -m "message"
 
 # commit all stages changes by skipping <filename>
 git commit -m "message"
 
 # commit message title and description
-git commit <filename> -m "title" -m "description"
+git commit $INSERT_FILENAME -m "title" -m "description"
 
 # opens a text editor to enter longer commit messages
 git commit
 
-
 # push changes to server
 git push -u origin master
 
-# pull from server       
+# pull from server
 git pull origin master
 ```
 
 ## Git commands
 
-##### Check status
-`git status`
+### Check status
 
-##### Track new files - add files to staging area before committing
-`git add file_name`
+```bash
+git status
+```
 
-##### Add all files using wildcards
-`git add *`
+### Track new files - add files to staging area before committing
 
-##### Remove added file
-`git rm file_name`  
+```bash
+git add $INSERT_FILENAME
+```
 
-##### Remove added directory recursively
-`git rm -r directory_name`  
+### Add all files using wildcards
 
-##### Undo adding file/dir using reset
+```bash
+git add *
+```
+
+### Remove added file
+
+```bash
+git rm $INSERT_FILENAME
+```
+
+### Remove added directory recursively
+
+```bash
+git rm -r $INSERT_DIRNAME
+```
+
+### Undo adding file/dir using reset
+
 Remove file from staging area  
-`git reset HEAD -- <file>`
+
+```bash
+git reset HEAD -- $INSERT_FILENAME
+```
 
 Remove directory from staging area  
-`git reset HEAD -- <directoryName>`
+
+```bash
+git reset HEAD -- $INSERT_DIRNAME
+```
 
 NOTE: Your modifications will be kept. When you run git status the file will once again show up as modified but not yet staged.
 
-##### Committing all files to the stating area / online server
-`git commit -m "Adding new files"`
+### Committing all files to the stating area / online server
 
-##### git log | Browse changes in log - with different formatting options
+```bash
+git commit -m "Adding new files"
 ```
+
+### git log | Browse changes in log - with different formatting options
+
+```bash
 git log
 git log --pretty=oneline
 git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 ```
 
 Commits on origin/master but not yet on master  
-`git log master..origin/master`
+
+```bash
+git log master..origin/master
+```
 
 Commits on master but not yet on origin/master  
-`git log origin/master..master`
 
-##### git show | Browse changes in files
-`git show master..origin/master`
+```bash
+git log origin/master..master
+```
+
+### git show | Browse changes in files
+
+```bash
+git show master..origin/master
+```
 
 ## Remote
+
 Add remote in current directory/repo  
-`git remote add https://github.com/abhijeetchopra/new-repo/abc.git`
+
+```bash
+git remote add https://github.com/abhijeetchopra/new-repo/abc.git
+```
 
 View remote config in current directory/repo  
-`git remote -v`
+
+```bash
+git remote -v
+```
 
 ## Pushing
+
 The -u parameter tells git to remember the parameters so next time we can write just : git push  
-`git push -u origin master`
+
+```bash
+git push -u origin master
+```
 
 ## Pulling
-`git pull origin master`
+
+```bash
+git pull origin master
+```
 
 ## Differences
+
 HEAD tells git to check all the differences with the "latest commit"  
-`git diff HEAD`
+
+```bash
+git diff HEAD
+```
 
 ## Stage
+
 Staged files are the files that we have told git that are ready to be committed.
-`git add <filename>`
+
+```bash
+git add $INSERT_FILENAME
+```
 
 ## Unstage
+
 Unstaging files from repo  
-`git reset new-repo/readme.txt`
+
+```bash
+git reset new-repo/readme.txt
+```
 
 ## Revert
+
 Revert changes in file to how they were at the last commit  
-`git checkout -- <filename>`
+
+```bash
+git checkout -- $INSERT_FILENAME
+```
 
 Revert repo to a previous commit and delete any changes made after the commit  
-`git reset --hard <commit hash>`
 
+```bash
+git reset --hard $INSERT_COMMIT_HASH
+```
 
 ## Fork
+
 In GitHub website, browse to the repository you want to fork and click on "Fork".
 After a few seconds, you should arrive at your 'personal' fork of the repository. Use the https/ssh links to clone it to your system locally.
 
-`git clone <fork clone url>`
+```bash
+git clone $INSERT_FORK_CLONE_URL
+```
 
 ## Sync your fork
 
 **origin** - your fork repo  
 **upstream** - your fork's parent repo
 
-```
+```bash
 # change current branch to master
 git checkout master
 
 # add ; only need this once
-git remote add upstream <fork's parent repo clone link>
+# $CLONE_LINK_TO_FORKS_PARENT = <fork's parent repo clone URL>>
+git remote add upstream  $INSERT_UPSTREAM_CLONE_URL
 
 # verify remote links
 git remote -v
@@ -279,8 +382,10 @@ git push
 ```
 
 ## Branch
-##### Create New Branch
-```
+
+### Create New Branch
+
+```bash
 # navigate to your repo
 cd my_repo
 
@@ -295,8 +400,9 @@ git add <filename>
 
 ```
 
-##### View Branches
-```
+### View Branches
+
+```bash
 git branch       # local branches
 git branch -v    # verbose
 git branch -r    # remote branches
@@ -312,13 +418,15 @@ git remote show [remote]
 
 ```
 
-##### Checkout Remote Branch
-```
+### Checkout Remote Branch
+
+```bash
 git checkout -t <name of remote>/branch_name
 ```
 
-##### Delete Local Branch
-```
+### Delete Local Branch
+
+```bash
 # -d is alias for --delete
 # only deletes branch if it has already been fully merged in its upstream branch
 git branch -d branch_name
@@ -327,19 +435,20 @@ git branch -d branch_name
 # deletes branch irrespective of it's merged status
 git branch -D branch_name
 ```
-##### Delete Remote Branch
-```
+
+### Delete Remote Branch
+
+```bash
 git push <remote_name> --delete <branch_name>
 ```
 
-##### Branch Housekeeping
+### Branch Housekeeping
+
 If a branch is deleted on server but still exists on your local repo, use prune to clean up your local repo. This command will remove branches from your local repo that don't exist on server anymore. This will not delete independent local branches that never existed on the server.   
-```
+
+```bash
 git fetch --all --prune
 ```
-
-
-
 
 ## Pull Request
 
@@ -347,20 +456,24 @@ git fetch --all --prune
 
 ### GitHub with SSH
 
-##### Generate SSH key pair
-```
+#### Generate SSH key pair
+
+```bash
 ssh-keygen -t rsa
 
 id_rsa # to be configured on your local shell
 id_rsa.pub # to be configured on GitHub
 ```
 
-##### Windows
+#### Windows
+
 Install GitHub Desktop
 
 #### Linux
+
 Start ssh agent manually on every console session and add the identity key
-```
+
+```bash
 eval `ssh-agent -s`               # starting the ssh agent
 ssh-add /path/to/my_private_key   # adding private key to agent
 ssh-add -l                        # list the identities on the agent
@@ -370,7 +483,8 @@ ssh-add -l                        # list the identities on the agent
 In GitHub, go to profile > settings > SSH keys
 
 ##### After enabling 2FA, change your remote URLs from HTTPS to SSH
-```
+
+```bash
 # verify remote URL
 git remote -v
 
@@ -384,9 +498,6 @@ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 3. https://lab.github.com
 4. https://www.linkedin.com/learning/github-essential-training/version-control-and-collaboration-with-github  
 
-
-
-
 # Commit Messages
 
 ##### Rules to live by for commit messages:  
@@ -396,13 +507,11 @@ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 * Use active voice. E.g., "add" instead of "added" and "merge" instead of "merged".  
 * Think of your commit as expressing intent to introduce a change.  
 
-
 # GitHub Learning Lab
 
 * https://youtu.be/PBI2Rz-ZOxU
 * https://lab.github.com
 * https://lab.github.com/courses
-
 
 # GitHub Workflow
 
@@ -417,7 +526,7 @@ Master / Main / Production Branch
 
 ### Branch Protections
 
-    GitHub > repo > settings > branches > add branch protection rule
+GitHub > repo > settings > branches > add branch protection rule
 
 1. Require pull request reviews before merging
 2. Require status checks to pass before merging
@@ -425,25 +534,25 @@ Master / Main / Production Branch
 4. Include administrators
 5. Restrict who can push to matching branches
 
-#####  1. Protecting the Master Branch
+####  1. Protecting the Master Branch
 
 1. Block direct changes made to master
 2. Only authorized users can bypass
 3. Can be applied to any branch, not just master
 
-##### 2. Pull Request Reviews
+#### 2. Pull Request Reviews
 
 1. Require at least one approving review
 2. Better accountability for reviewers
 3. Better accountability for pull request authors
 
-##### 3. Merge Protections
+#### 3. Merge Protections
 
 1. Restrict who can push merge
 2. Comply with organization requirements
 3. Can be authorized users or teams
 
-##### 4. Status Checks on Commits
+#### 4. Status Checks on Commits
 
 1. Automated control
 2. Consistency with each commit
@@ -465,9 +574,6 @@ Automatically building and testing code
 3. Gives you the flexibility to release as often as you want
 
 ## Continuous Deployment (CD++)
+
 1. Takes continuous delivery one step further
 2. Automated in the background, no human intervention
-
-
-
-
