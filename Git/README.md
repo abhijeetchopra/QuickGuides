@@ -334,7 +334,7 @@ git reset new-repo/readme.txt
 
 ## Revert
 
-Revert changes in file to how they were at the last commit  
+### Revert changes in file to how they were at the last commit  
 
 ```bash
 git checkout -- $INSERT_FILENAME
@@ -344,6 +344,110 @@ Revert repo to a previous commit and delete any changes made after the commit
 
 ```bash
 git reset --hard $INSERT_COMMIT_HASH
+```
+
+### Reword a git commit message
+
+```bash
+$ git log --oneline --graph
+* 2cefbba (HEAD -> master) f2
+* 826a7db f1
+* f2c3ab7 m3
+* 639535b m2
+* 280fc64 m1
+* 2a069bf initial commit
+```
+
+To change commit message of commit 826a7db i.e. 'f1' to say 'g1':
+
+```bash
+git rebase -i 826a7db
+```
+
+You will get this:
+
+```bash
+  1 pick 2cefbba f2
+  2
+  3 # Rebase 826a7db..2cefbba onto 826a7db (1 command)
+  4 #
+  5 # Commands:
+...
+```
+
+Replace 'pick' with 'reword', then save and exit:
+
+```bash
+  1 reword 2cefbba f2
+  2
+  3 # Rebase 826a7db..2cefbba onto 826a7db (1 command)
+  4 #
+  5 # Commands:
+...
+```
+
+You will be prompted to put in a new commit message:
+
+```bash
+  1 f2
+  2
+  3 # Please enter the commit message for your changes. Lines starting
+  4 # with '#' will be ignored, and an empty message aborts the commit.
+  5 #
+  6 # Date:      Fri Apr 17 22:44:56 2020 -0400
+  7 #
+  8 # interactive rebase in progress; onto 826a7db
+  9 # Last command done (1 command done):
+ 10 #    reword 2cefbba f2
+ 11 # No commands remaining.
+ 12 # You are currently editing a commit while rebasing branch 'master' on      '826a7db'.
+ 13 #
+ 14 # Changes to be committed:
+ 15 #       modified:   README.md
+ 16 #
+```
+
+Reword the commit message and then save and exit:
+
+```bash
+  1 g2
+  2
+  3 # Please enter the commit message for your changes. Lines starting
+  4 # with '#' will be ignored, and an empty message aborts the commit.
+  5 #
+  6 # Date:      Fri Apr 17 22:44:56 2020 -0400
+  7 #
+  8 # interactive rebase in progress; onto 826a7db
+  9 # Last command done (1 command done):
+ 10 #    reword 2cefbba f2
+ 11 # No commands remaining.
+ 12 # You are currently editing a commit while rebasing branch 'master' on     '826a7db'.
+ 13 #
+ 14 # Changes to be committed:
+ 15 #       modified:   README.md
+ 16 #
+```
+
+Message on exit:
+
+```bash
+$ git rebase -i 826a7db
+[detached HEAD 44a7180] g2
+ Date: Fri Apr 17 22:44:56 2020 -0400
+ 1 file changed, 1 insertion(+)
+Successfully rebased and updated refs/heads/master.
+```
+
+Check git log and you can see the reworded commit:
+
+```bash
+$ git log --oneline --graph
+* 44a7180 (HEAD -> master) g2
+* 826a7db f1
+* f2c3ab7 m3
+* 639535b m2
+* 280fc64 m1
+* 2a069bf initial commit
 ```
 
 ## Fork
@@ -480,6 +584,7 @@ ssh-add -l                        # list the identities on the agent
 ```
 
 ##### Add public key to GitHub account
+
 In GitHub, go to profile > settings > SSH keys
 
 ##### After enabling 2FA, change your remote URLs from HTTPS to SSH
@@ -492,28 +597,29 @@ git remote -v
 git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 ```
 
-# References
+## References
+
 1. https://git-scm.com/docs/
 2. https://gitimmersion.com
 3. https://lab.github.com
 4. https://www.linkedin.com/learning/github-essential-training/version-control-and-collaboration-with-github  
 
-# Commit Messages
+## Commit Messages
 
-##### Rules to live by for commit messages:  
+### Rules to live by for commit messages
 
 * Don’t end your commit message with a period.  
 * Keep your commit messages to 50 characters or less.  
 * Use active voice. E.g., "add" instead of "added" and "merge" instead of "merged".  
 * Think of your commit as expressing intent to introduce a change.  
 
-# GitHub Learning Lab
+## GitHub Learning Lab
 
 * https://youtu.be/PBI2Rz-ZOxU
 * https://lab.github.com
 * https://lab.github.com/courses
 
-# GitHub Workflow
+## GitHub Workflow
 
 Master / Main / Production Branch  
 
@@ -522,9 +628,9 @@ Master / Main / Production Branch
 * Code reviews  
 * Issues / Projects  
 
-## Security Concerns
+### Security Concerns
 
-### Branch Protections
+#### Branch Protections
 
 GitHub > repo > settings > branches > add branch protection rule
 
@@ -534,25 +640,25 @@ GitHub > repo > settings > branches > add branch protection rule
 4. Include administrators
 5. Restrict who can push to matching branches
 
-####  1. Protecting the Master Branch
+##### 1. Protecting the Master Branch
 
 1. Block direct changes made to master
 2. Only authorized users can bypass
 3. Can be applied to any branch, not just master
 
-#### 2. Pull Request Reviews
+##### 2. Pull Request Reviews
 
 1. Require at least one approving review
 2. Better accountability for reviewers
 3. Better accountability for pull request authors
 
-#### 3. Merge Protections
+##### 3. Merge Protections
 
 1. Restrict who can push merge
 2. Comply with organization requirements
 3. Can be authorized users or teams
 
-#### 4. Status Checks on Commits
+##### 4. Status Checks on Commits
 
 1. Automated control
 2. Consistency with each commit
