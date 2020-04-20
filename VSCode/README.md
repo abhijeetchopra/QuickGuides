@@ -21,3 +21,13 @@
 | `alt + downward arrow` | Moves line down |
 | `Option + Command + up/down arrows` | Span cursor across multiple lines |
 | `Option + Command + left/right arrows` | Toggle open panes / tabs |
+| `Command + ~` | Open new terminal |
+| `Command + \` | Split terminal/editor window |
+
+## Command menu options
+
+| `>terminal:rename` | Rename currently active terminal |
+
+## References
+
+- <https://itnext.io/easy-enhancements-for-vs-codes-terminal-6dda2c22ee5c>
