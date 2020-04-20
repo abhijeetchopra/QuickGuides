@@ -38,11 +38,28 @@
 
 ### Iterm2 Shortcuts
 
+> <https://www.iterm2.com/>
+
 | Command | Description |
 | --- | --- |
-| `ctrl + D` | split pane vertically |
-| `ctrl + shift + D` | split pane horizontally |
+| `cmd + T` | new tab |
+| `cmd + N` | new window |
+| `cmd + D` | split pane vertically |
+| `cmd + shift + D` | split pane horizontally |
 | `opt + cmd + ↑` | select pane above |
 | `opt + cmd + ↓` | select pane below |
 | `opt + cmd + ←` | select pane left |
 | `opt + cmd + →` | select pane right |
+| `cmd + return` | toggle full screen view |
+
+### Magnet Shortcuts
+
+> <https://magnet.crowdcafe.com/>
+
+| Command | Description |
+| --- | --- |
+| `cmd + D` | split pane vertically |
+| `cmd + shift + D` | split pane horizontally |
+| `ctl + opt + cmd + →` | move window to next display |
+| `ctl + opt + cmd + ←` | move window to prev display |
+| `ctl + opt + cmd + ←` | move window to prev display |
