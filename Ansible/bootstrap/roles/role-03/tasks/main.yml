@@ -1,0 +1,9 @@
+# roles/role-03/tasks/main.yml
+
+- import_tasks: task_one.yml
+
+- import_tasks: task_two.yml
+
+- name: task_three
+  debug:
+    msg: "task three successful: you called a role that had this task in it's main.yml file"

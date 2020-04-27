@@ -1,0 +1,13 @@
+# playbooks/playbook-03.yml
+
+# this playbook calls a role and then does a task
+
+- name: playbook two
+  hosts: localhost
+  roles: 
+    - { role: rolefoo }
+
+  tasks:
+    - name: playbook task one
+      debug:
+        msg: "you executed a playbook and that had this task in it"

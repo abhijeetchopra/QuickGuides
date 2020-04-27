@@ -1,0 +1,13 @@
+# playbooks/playbook-04.yml
+
+# this playbook imports another playbook and then does a task
+
+- name: playbook two
+  hosts: localhost
+  
+  tasks:
+    - import_playbook: playbook-03.yml
+
+    - name: playbook task one
+      debug:
+        msg: "you executed a playbook and that had this task in it"

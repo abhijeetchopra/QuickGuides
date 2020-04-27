@@ -1,0 +1,41 @@
+# playbooks/playbook-02.yml
+
+# this playbook calls roles in four different ways 
+
+- name: playbook two task one
+  hosts: localhost
+  roles: 
+    # 1. one way to call a role
+    - common
+
+    # 2. another way to call a role
+    - role: common
+    
+    # 2.b another way to call a role, with tags
+    - role: common
+      tags:
+        - foo 
+        - bar
+    
+    # 3. yet another way to call a role (YAML shorthand)
+    - { role: common }
+    
+    # 3.b yet another way to call a role (YAML shorthand), with tags
+    - { role: common, tags: ["foo", "bar"] }
+  
+  # 4. import_role module to call a role within a task
+  tasks:
+    - import_role:
+        name: common
+      tags:
+        - foo 
+        - bar 
+
+    - import_role: 
+        name: role-01
+
+    - import_role:
+        name: role-02
+
+    - import_role: 
+        name: role-03

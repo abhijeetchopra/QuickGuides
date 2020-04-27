@@ -1,0 +1,5 @@
+# roles/common/tasks/main.yml
+
+- name: common task_one
+  debug:
+    msg: "task one successful: you called this task from a role!"

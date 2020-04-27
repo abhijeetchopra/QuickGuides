@@ -1,0 +1,15 @@
+# playbooks/playbook-01.yml
+
+# this playbook does two simple tasks
+
+- name: playbook one
+  hosts: localhost
+  tasks:
+  
+    - name: task one
+      debug: # debug module prints a statement during execution
+        msg: "task one successful: you executed a task from a playbook!"
+    
+    - name: task two
+      debug: # debug module prints a statement during execution
+        msg: "task two successful: you executed another task from a playbook!"
