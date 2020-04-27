@@ -321,6 +321,16 @@ Basic Playbook
 
 ```bash
 
+# list hosts
+ansible-playbook -i hosts.yml site.yml --list-hosts
+
+# list tasks
+ansible-playbook  -i hosts.yml site.yml --list-tasks
+
+# dry run
+ansible-playbook  -i hosts.yml site.yml --check --diff
+
+# executing a playbook
 ansible-playbook -i hosts.yml site.yml
 
 ```
