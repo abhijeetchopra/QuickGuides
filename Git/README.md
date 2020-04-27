@@ -260,6 +260,7 @@ git commit -m "Adding new files"
 git log
 git log --pretty=oneline
 git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+git log --oneline --graph -n 5
 ```
 
 Commits on origin/master but not yet on master  
