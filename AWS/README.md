@@ -55,10 +55,17 @@ aws ecr get-login-password --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION |
 
 # describe repositories - all
 aws ecr describe-repositories --profile $AWS_PROFILE --region=$AWS_DEFAULT_REGION | jq '.'
+
 # describe repositories - given
-aws ecr describe-repositories --profile $AWS_PROFILE --region=$AWS_DEFAULT_REGION | jq '.' | jq '.repositories[] | select(.repositoryName == "<insert-aws-ecr-repository-name>")'
+# using jq
+aws ecr describe-repositories --profile $AWS_PROFILE --region=$AWS_DEFAULT_REGION | jq '.' | jq '.repositories[] | select(.repositoryName == "$INSERT_AWS_ECR_REPOSITORY_NAME")'
+# using aws cli jmespath query
+aws ecr describe-repositories --profile $AWS_PROFILE --region=us-east-1 --query "repositories[?repositoryName=='$INSERT_AWS_ECR_REPOSITORY_NAME']"
+
 
 # list images in given repository
 aws ecr list-images --repository-name $INSERT_AWS_ECR_REPOSITORY_NAME --profile $AWS_PROFILE --region=$AWS_DEFAULT_REGION
 
+# list latest tag of images in given repository
+aws ecr list-images --repository-name $INSERT_AWS_ECR_REPOSITORY_NAME --profile $AWS_PROFILE --region=$AWS_DEFAULT_REGION --query 'imageIds[].imageTag|reverse(sort(@))[0]' --output text
 ```
