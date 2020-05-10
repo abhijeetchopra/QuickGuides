@@ -63,3 +63,8 @@
 | `ctl + opt + cmd + →` | move window to next display |
 | `ctl + opt + cmd + ←` | move window to prev display |
 | `ctl + opt + cmd + ←` | move window to prev display |
+
+### Hacks
+
+Open multiple urls stored in a file in separate browser tabs
+`cat urls-one | xargs open -a "Google Chrome"`
