@@ -2,7 +2,7 @@
 
 # this playbook calls roles in four different ways 
 
-- name: playbook two task one
+- name: playbook two
   hosts: localhost
   roles: 
     # 1. one way to call a role

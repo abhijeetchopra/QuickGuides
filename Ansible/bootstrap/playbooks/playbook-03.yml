@@ -2,7 +2,7 @@
 
 # this playbook calls a role and then does a task
 
-- name: playbook two
+- name: playbook three
   hosts: localhost
   roles: 
     - { role: rolefoo }
