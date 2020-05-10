@@ -1,0 +1,104 @@
+# playbooks/playbook-05.yml
+
+# this playbook creates/deletes a file/link based on the tags called
+
+# only runs path tests
+# ansible-playbook playbook-05.yml                          
+
+# only creates src file
+# ansible-playbook playbook-05.yml --tags create_src_path   
+
+# only deletes src file
+# ansible-playbook playbook-05.yml --tags delete_src_path   
+
+# only creates dest link
+# ansible-playbook playbook-05.yml --tags create_dest_path  
+
+# only deletes dest link
+# ansible-playbook playbook-05.yml --tags delete_dest_path  
+
+# creates both src file and dest link
+# ansible-playbook playbook-05.yml --tags="create_src_path,create_dest_path"  
+
+- name: playbook five
+  hosts: localhost
+  vars: 
+    src_path: "~/tmp/ansible_test/foo"
+    dest_path: "~/tmp/ansible_test/bar"
+    playbook_debugging: True
+  
+  tasks:
+
+    - name: debug info
+      debug: 
+        msg: src_path = {{ src_path }}, dest_path = {{ dest_path }}
+      # only run this when var is true
+      when: playbook_debugging|bool == true
+
+    - name: note
+      debug: 
+        msg: only tests will run by default; use tags to force link creation/deletion
+      when: playbook_debugging|bool == true
+
+    - name: test if source path "{{ src_path }}" exists
+      stat: 
+        path: "{{ src_path }}"
+      register: output_src_path
+      # fail this test if path doesn't exist; convert to bool for conditional check
+      failed_when: output_src_path.stat.exists|bool == false
+      ignore_errors: yes
+      tags: 
+        - test
+    
+    - name: test if destination path "{{ dest_path }}" exists
+      stat: 
+        path: "{{ dest_path }}"
+      register: output_dest_path
+      # fail this test if destination path doesn't exist 
+      failed_when: output_dest_path.stat.exists|bool == false 
+      tags: 
+        - test 
+
+    - name: create (src) text file
+      file: 
+        path: "{{ src_path }}"
+        state: touch 
+        #owner: root 
+        #group: root 
+      tags:
+        - never  
+        - create_src_path
+
+    - name: delete (src) text file
+      file: 
+        path: "{{ src_path }}"
+        state: absent 
+        #owner: root 
+        #group: root 
+      tags: 
+        - never
+        - delete_src_path 
+
+    - name: create (dest) symbolic link
+      file: 
+        src: "{{ src_path }}"
+        dest: "{{ dest_path }}"
+        state: link 
+        #owner: root 
+        #group: root 
+        force: yes 
+      tags:
+        - never  
+        - create_dest_path
+
+    - name: delete (dest) symbolic link
+      file: 
+        src: "{{ src_path }}"
+        dest: "{{ dest_path }}"
+        state: absent 
+        #owner: root 
+        #group: root 
+        force: yes 
+      tags: 
+        - never
+        - delete_dest_path 
