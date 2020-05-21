@@ -51,6 +51,7 @@
 | `opt + cmd + ←` | select pane left |
 | `opt + cmd + →` | select pane right |
 | `cmd + return` | toggle full screen view |
+| `cmd + shift + opt` | hold and drag and drop windows to merge |
 
 ### Magnet Shortcuts
 

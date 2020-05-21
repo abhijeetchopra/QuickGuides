@@ -317,6 +317,12 @@ HEAD tells git to check all the differences with the "latest commit"
 git diff HEAD
 ```
 
+Differences between "parent of HEAD" and "HEAD" commit
+
+```bash
+git diff HEAD~1 HEAD
+```
+
 ## Stage
 
 Staged files are the files that we have told git that are ready to be committed.
@@ -335,16 +341,22 @@ git reset new-repo/readme.txt
 
 ## Revert
 
-### Revert changes in file to how they were at the last commit  
+Revert changes in file to how they were at the last commit  
 
 ```bash
 git checkout -- $INSERT_FILENAME
 ```
 
-Revert repo to a previous commit and delete any changes made after the commit  
+Revert repo to a previous commit and delete any changes made after the commit
 
 ```bash
 git reset --hard $INSERT_COMMIT_HASH
+```
+
+Revert repo to a previous commit and keep any changes made after the commit
+
+```bash
+git reset --soft $INSERT_COMMIT_HASH
 ```
 
 ### Reword a git commit message
@@ -549,10 +561,14 @@ git push <remote_name> --delete <branch_name>
 
 ### Branch Housekeeping
 
-If a branch is deleted on server but still exists on your local repo, use prune to clean up your local repo. This command will remove branches from your local repo that don't exist on server anymore. This will not delete independent local branches that never existed on the server.   
+If a branch is deleted on server but still exists on your local repo, use prune to clean up your local repo. This command will remove any remote tracking references that no longer exist on the remote. This will not delete independent local branches that never existed on the server, for which, use branch command that follows the command below.
 
 ```bash
 git fetch --all --prune
+```
+
+```bash
+git branch -d '$INSERT-NAME-OF-BRANCH-TO-BE-DELTED'
 ```
 
 ## Pull Request
