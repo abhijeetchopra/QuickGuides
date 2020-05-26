@@ -1,0 +1,39 @@
+# playbooks/playbook-05.yml
+
+# this playbook demonstrates how to write a task that encounters failure
+
+- name: playbook six
+  hosts: localhost
+  
+  tasks:
+
+    - name: simple task
+      ping:
+      register: output
+
+    - name: debug
+      debug:
+        var: output
+                
+    - name: simple task that will fail
+      ping: 
+        data: crash
+      register: output_crash
+      ignore_errors: yes
+
+    - name: debug
+      debug:
+        var: output_crash
+        
+    - name: simple task that will fail but with retries
+      ping: 
+        data: crash
+      retries: 4
+      delay: 4
+      register: output_crash_with_retry
+      until: output_crash_with_retry.rc == 0
+
+    - name: debug
+      debug:
+        var: output_crash_with_retry
+        
