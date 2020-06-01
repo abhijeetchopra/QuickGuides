@@ -248,10 +248,21 @@ git reset HEAD -- $INSERT_DIRNAME
 
 NOTE: Your modifications will be kept. When you run git status the file will once again show up as modified but not yet staged.
 
-### Committing all files to the stating area / online server
+### git commit
+
+Committing all files to the stating area / online server
 
 ```bash
 git commit -m "Adding new files"
+```
+
+Changing the latest Git commit message
+
+```bash
+git push --force-with-lease repository-name branch-name
+
+# example
+git push --force-with-lease origin develop
 ```
 
 ### git log | Browse changes in log - with different formatting options
