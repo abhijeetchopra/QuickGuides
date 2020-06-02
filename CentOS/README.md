@@ -230,9 +230,22 @@ awk '{$1=$2=$3=$4=$5=""; print $0}' auth.log
 
 # sed
 # --------------------------------------
+# NOTE: GNU sed implementation differs from BSD sed
+# MacOS users BSD by default
+# Use homebrew to install gnu implementation on MacOS
+
+# replace Orange with Red and print result in console
 sed s/Orange/Red/ simple_data.txt # replaces Orange with Red
 
+# replace Orange with Red and save output in the same input file
+sed -i s/Orange/Red/ simple_data.txt # replaces Orange with Red
 
+# insert Orange in beginning of the file
+sed -i "1s/^/Orange\n/" simple_data.txt
+
+
+# insert Red at the end of the file
+sed -i -e "\$aRed" simple_data.txt
 
 # sort - sorts contents of a file/input
 # --------------------------------------
