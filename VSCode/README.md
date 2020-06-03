@@ -28,6 +28,16 @@
 
 | `>terminal:rename` | Rename currently active terminal |
 
+## Key Bindings
+
+- <https://code.visualstudio.com/docs/getstarted/keybindings>
+
+Menu > Preferences > Keyboard Shortcuts:
+
+````json
+{ "key": "ctrl+` ctrl+1",    "command": "workbench.action.toggleMaximizedPanel" },
+````
+
 ## References
 
 - <https://itnext.io/easy-enhancements-for-vs-codes-terminal-6dda2c22ee5c>
