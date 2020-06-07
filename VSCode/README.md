@@ -13,16 +13,25 @@
 
 ### Mac
 
+#### Editor
+
+| Command | Description |
+| --- | --- |
+| `ctrl + shift + v` | Opens markdown preview tab. Needs the `markdown-preview` package installed |
+| `cmd + \` | Split editor/terminal window |
+| `alt + upward arrow` | Moves line up |
+| `alt + downward arrow` | Moves line down |
+| `opt + cmd + up/down arrows` | Span cursor across multiple lines |
+| `opt + cmd + left/right arrows` | Toggle open panes / tabs |
+
+#### Terminal
+
 | Command | Description |
 | --- | --- |
 | ``ctrl + shift + ` `` | Opens new terminal |
-| `ctrl + shift + v` | Opens markdown preview tab. Needs the `markdown-preview` package installed |
-| `alt + upward arrow` | Moves line up |
-| `alt + downward arrow` | Moves line down |
-| `Option + Command + up/down arrows` | Span cursor across multiple lines |
-| `Option + Command + left/right arrows` | Toggle open panes / tabs |
-| `Command + ~` | Open new terminal |
-| `Command + \` | Split terminal/editor window |
+| `ctrl + ~` | Show/hide panel |
+| `ctrl + esc` | Maximize/minimize panel |
+| `cmd + \` | Split terminal/editor window |
 
 ## Command menu options
 
@@ -34,9 +43,32 @@
 
 Menu > Preferences > Keyboard Shortcuts:
 
-````json
-{ "key": "ctrl+` ctrl+1",    "command": "workbench.action.toggleMaximizedPanel" },
-````
+Maximize Terminal / Panel
+
+```json
+{
+    "key": "ctrl + Esc",
+    "command": "workbench.action.toggleMaximizedPanel"
+}
+```
+
+Focus on Editor
+
+```json
+{
+    "key": "cmd + k",
+    "command": "workbench.action.focusActiveEditorGroup",
+}
+```
+
+Focus on Terminal
+
+```json
+{
+    "key": "cmd + j",
+    "command": "workbench.action.terminal.focus",
+}
+```
 
 ## References
 
