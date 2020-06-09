@@ -253,12 +253,13 @@ NOTE: Your modifications will be kept. When you run git status the file will onc
 Committing all files to the stating area / online server
 
 ```bash
-git commit -m "Adding new files"
+git commit -m "Add new files"
 ```
 
 Changing the latest Git commit message
 
 ```bash
+git commit --amend -m "New commit message"
 git push --force-with-lease repository-name branch-name
 
 # example
