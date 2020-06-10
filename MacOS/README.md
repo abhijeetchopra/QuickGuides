@@ -68,4 +68,13 @@
 ### Hacks
 
 Open multiple urls stored in a file in separate browser tabs
-`cat urls-one | xargs open -a "Google Chrome"`
+
+```bash
+cat urls-one | xargs open -a "Google Chrome"
+```
+
+Convert html to plain text
+
+```bash
+textutil -convert txt *.html
+```
