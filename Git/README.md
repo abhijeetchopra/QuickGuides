@@ -631,7 +631,8 @@ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 1. https://git-scm.com/docs/
 2. https://gitimmersion.com
 3. https://lab.github.com
-4. https://www.linkedin.com/learning/github-essential-training/version-control-and-collaboration-with-github  
+4. https://www.linkedin.com/learning/github-essential-training/version-control-and-collaboration-with-github
+5. https://help.github.com/en/github/committing-changes-to-your-project/changing-a-commit-message
 
 ## Commit Messages
 
