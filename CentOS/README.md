@@ -100,6 +100,9 @@ ls -l    # list
 # options with one dash can be combined e.g. "$ls -l -a -h" = "$ls -lah"
 # options with two dashes cannot be combined
 
+# command with very less execution time when listing millions of files
+/bin/ls -U -1 --color=never
+
 
 # cat - print file contents / concatenate
 # --------------------------------------
