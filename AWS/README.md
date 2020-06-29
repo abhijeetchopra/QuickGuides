@@ -70,4 +70,11 @@ aws ecr list-images --repository-name $INSERT_AWS_ECR_REPOSITORY_NAME --profile 
 
 # list latest tag of images in given repository
 aws ecr list-images --repository-name $INSERT_AWS_ECR_REPOSITORY_NAME --profile $AWS_PROFILE --region=$AWS_DEFAULT_REGION --query 'imageIds[].imageTag|reverse(sort(@))[0]' --output text
+
+aws s3 ls
+
+aws s3 ls s3://test-bucket/sample-file.txt
+
+aws s3 cp ~/localfile.txt s3://test-bucket/sample-file-upload.txt
+
 ```
