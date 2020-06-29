@@ -22,6 +22,7 @@ docker pull <>                # remove downloaded image
 docker run ubuntu             # run a container from image 'ubuntu'
 dockder run ubuntu sleep 5    # run a container form image 'ubuntu', then run command 'sleep 5'
 docker exec <> cat /etc/hosts # execute command in container
+docker exec -it <> /bin/bash  # ssh into a running container
 docker run -d <>              # run container in detached mode
 docker attach <>              # attach to the running container
 docker run redis              # defaults to 'docker run redis:latest'
