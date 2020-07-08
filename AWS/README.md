@@ -77,4 +77,7 @@ aws s3 ls s3://test-bucket/sample-file.txt
 
 aws s3 cp ~/localfile.txt s3://test-bucket/sample-file-upload.txt
 
+
+# list latest launch template version of given launch template name
+aws ec2 describe-launch-templates --launch-template-names $INSERT_LAUNCH_TEMPLATE_NAME --profile $AWS_PROFILE --query "LaunchTemplates[].LatestVersionNumber" --output text; done;
 ```
