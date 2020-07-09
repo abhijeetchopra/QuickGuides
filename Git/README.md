@@ -200,6 +200,22 @@ git push -u origin master
 git pull origin master
 ```
 
+### Remote
+
+> Revert pushed commit 
+
+```bash
+#NOTE: - only do this if no-one has already pulled your change
+#      - after reset and forced push, some tags may still be pointing to removed commit
+
+# this will re-checkout all the updates locally (so git status will list all updated files)
+# git reset --soft <previous label or sha1>
+git reset --soft HEAD~1
+
+# git push -f <remote-name> <branch-name>
+git push -f origin master
+```
+
 ## Git commands
 
 ### Check status
@@ -633,6 +649,7 @@ git remote set-url origin git@github.com:USERNAME/REPOSITORY.git
 3. https://lab.github.com
 4. https://www.linkedin.com/learning/github-essential-training/version-control-and-collaboration-with-github
 5. https://help.github.com/en/github/committing-changes-to-your-project/changing-a-commit-message
+6. https://stackoverflow.com/a/31937298
 
 ## Commit Messages
 
