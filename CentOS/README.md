@@ -888,6 +888,9 @@ ps -C syslogd -o pid=
 # print only the name of PID 42
 ps -q 42 -o comm=
 
+# print processes sorted by memory usage
+ps -o pid,user,%mem,command ax | sort -b -k3 -r
+
 # print process id of particular process
 pidof <process_name>
 pgrep <process_name>
