@@ -145,14 +145,23 @@ ansible web -m command -a "uptime"
 # collect and display the discovered for the localhost
 ansible localhost -m setup
 
-#
+# connect as achopra user
 ansible all -i hosts.yml -u achopra --diff -m command "whoami"
 
-#
+# become priviledge escalation - default as root
 ansible all -i hosts.yml -u achopra -diff -m command "whoami" -b
 
-#
+# become priviledge escalation - as specified user (admin here)
+ansible all -i hosts.yml -u achopra -diff -m command "whoami" -b admin
+
+# dry run: use --check flag to do a dry run; below command is to install nginx pkg if not present
 ansible all -i hosts.yml -u achopra --limit="rasp-node-1," --check --diff -m apt -a "name=nginx state=present" -b
+
+# actual run: without --check flag to do an actual run of the above command
+ansible all -i hosts.yml -u achopra --limit="rasp-node-1," --diff -m apt -a "name=nginx state=present" -b
+
+# running a role from ad-hoc command
+ansible all -i hosts.yml -u achopra --limit="rasp-node-1" --diff -m import_role -a name=demo-role -b
 ```
 
 ## 05. Introduction to Playbooks  
