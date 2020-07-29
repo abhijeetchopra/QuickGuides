@@ -1016,6 +1016,21 @@ diff <filename> <filename>
 Use dos2unix and unix2dos utilities for file conversions
 
 
+# Networking
+# --------------------------------------
+ping google.com
+
+
+# test open port on remote host
+
+## using nmap
+nmap -A <ip> -p <port>
+nmap -A 52.43.73.53/32 -p 443
+
+## using nc
+nc -zv <ip> <port>
+nc -zv 52.43.73.53 443
+
 # References / Further Reading
 # --------------------------------------
 http://tldp.org/
