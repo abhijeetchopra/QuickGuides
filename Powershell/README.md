@@ -10,6 +10,6 @@ Get-ADUser -Identity johndoe -Properties AccountLockoutTime,LastBadPasswordAttem
 
 ```
 
-# References
+## References
 
-- <https://docs.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-3.7.0>
+- <https://docs.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-4.5.0>
