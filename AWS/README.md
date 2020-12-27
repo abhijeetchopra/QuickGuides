@@ -2,6 +2,9 @@
 
 ```aw
 
+# list accounts
+aws organizations list-accounts --profile $AWS_PROFILE
+
 # describe vpcs
 aws ec2 describe-vpcs --profile $AWS_PROFILE --region=us-east-1 | grep -e "OwnerId" -e "VpcId"
 
@@ -80,4 +83,11 @@ aws s3 cp ~/localfile.txt s3://test-bucket/sample-file-upload.txt
 
 # list latest launch template version of given launch template name
 aws ec2 describe-launch-templates --launch-template-names $INSERT_LAUNCH_TEMPLATE_NAME --profile $AWS_PROFILE --query "LaunchTemplates[].LatestVersionNumber" --output text; done;
+
+# retrieve sts creds
+aws sts assume-role --role-arn arn:aws:iam::$INSERT_AWS_ACCOUNT_ID:role/$INSERT_AWS_ROLE_NAME --role-session-name=$INSERT_SOME_LABEL --query Credentials.[AccessKeyId,SecretAccessKey,SessionToken] --output text
+
+# decode aws sts encoded error message
+aws sts decode-authorization-message --encoded-message $INSERT_ENCODED_MESSAGE --query DecodedMessage --output text --profile $AWS_PROFILE | jq '.'
+
 ```
