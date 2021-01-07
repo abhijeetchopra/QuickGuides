@@ -90,4 +90,6 @@ aws sts assume-role --role-arn arn:aws:iam::$INSERT_AWS_ACCOUNT_ID:role/$INSERT_
 # decode aws sts encoded error message
 aws sts decode-authorization-message --encoded-message $INSERT_ENCODED_MESSAGE --query DecodedMessage --output text --profile $AWS_PROFILE | jq '.'
 
+# find aws resource in vpc that owns the unknown IP address
+aws ec2 describe-network-interfaces --filters Name=addresses.private-ip-address,Values=$INSERT_IP_ADDRESS
 ```
