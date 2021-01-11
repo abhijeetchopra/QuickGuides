@@ -1041,6 +1041,10 @@ set bell-style visual
 # set in bashrc at /home/username for user and/or at /etc/bashrc for root
 export HISTTIMEFORMAT="%Y-%m-%d_%H:%M:%S "
 
+# send mail using mailx email client
+echo "This is a test message." | mailx -r sender@email.com -s "Email subject" recipient@email.com
+
+
 # References / Further Reading
 # --------------------------------------
 http://tldp.org/
