@@ -1010,6 +1010,8 @@ diff <filename> <filename>
      -s: report identical files
      -y: side by side output in two columns
 
+vimdiff <filename> <filename>
+
 # Working between Windows and Linux
 # --------------------------------------
 1. Line Endings are different in different Operating Systems
@@ -1030,6 +1032,14 @@ nmap -A 52.43.73.53/32 -p 443
 ## using nc
 nc -zv <ip> <port>
 nc -zv 52.43.73.53 443
+
+# disable audio bell
+# set in bashrc
+set bell-style visual
+
+# useful history datetimestamp
+# set in bashrc at /home/username for user and/or at /etc/bashrc for root
+export HISTTIMEFORMAT="%Y-%m-%d_%H:%M:%S "
 
 # References / Further Reading
 # --------------------------------------
