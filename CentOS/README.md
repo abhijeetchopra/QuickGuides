@@ -1045,6 +1045,16 @@ export HISTTIMEFORMAT="%Y-%m-%d_%H:%M:%S "
 echo "This is a test message." | mailx -r sender@email.com -s "Email subject" recipient@email.com
 
 
+# useful commands
+# --------------------------------------
+
+# cut from character 59 to end of line
+for i in `ls -lah | grep "Feb  5" cut -c 59-`; do echo $i; done;
+
+# read file line by line with whitespace in line
+cat filename | while read; do echo "$REPLY"; done
+
+
 # References / Further Reading
 # --------------------------------------
 http://tldp.org/
