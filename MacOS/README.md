@@ -26,6 +26,20 @@
 | --- | --- |
 | `ctrl + r` | reverse-i-serarch |
 
+### Safari
+
+| Combination | Description |
+| --- | --- |
+| ``command + ` `` | switch open windows |
+| `command + shift + arrow keys` | switch open tabs |
+| `ctrl + tab` | switch to next tabs |
+| `ctrl + shift + tab` | switch to previous tabs |
+| `command + t` | open new tab |
+| `command + q` | close current tab |
+| `command + q` | quit safari |
+| `command + h` | hide safari |
+| `command + l` | go to address bar |
+
 ## Commands
 
 ### Terminal Commands
