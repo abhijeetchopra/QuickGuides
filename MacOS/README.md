@@ -94,3 +94,23 @@ Convert html to plain text
 ```bash
 textutil -convert txt *.html
 ```
+
+Change permissions recursively targeted on either files or directories
+
+```bash
+#view octal permissions
+stat -f '%Sp %OLp %N' /path/to/file-or-dir
+
+# view permisisons on only files
+find /path/to/file -type f -exec stat -f '%Sp %OLp %N' {} +
+
+# view permisisons on only directories
+find /path/to/file -type d -exec stat -f '%Sp %OLp %N' {} +
+
+# change permissions on only files
+find /path/to/dir -type f -exec chmod 644 {} +
+
+# change permisisons on only directories
+find /path/to/dir -type d -exec chmod 755 {} +
+
+```
