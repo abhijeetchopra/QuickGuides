@@ -376,8 +376,17 @@ file?.txt
 sudo useradd testuser    # creates user
 sudo passwd testuser     # sets user password
 
+# adduser is more friendly version of useradd
+# -u               - userid
+# -G               - group memberships
+# -s               - default shell
+# -d               - home directory
+sudo adduser testuser --disabled-password -u 790 -G testgroup -s /bin/bash -d /home/testuser
+
 sudo groupadd testgroup  # creates group
 
+# create group with specific groupid
+sudo groupadd -g 790 testgroup
 
 # SUID / GUID
 # --------------------------------------
