@@ -98,7 +98,7 @@ textutil -convert txt *.html
 Change permissions recursively targeted on either files or directories
 
 ```bash
-#view octal permissions
+# view octal permissions
 stat -f '%Sp %OLp %N' /path/to/file-or-dir
 
 # view permisisons on only files
@@ -113,4 +113,11 @@ find /path/to/dir -type f -exec chmod 644 {} +
 # change permisisons on only directories
 find /path/to/dir -type d -exec chmod 755 {} +
 
+```
+
+Date
+
+```bash
+# convert 
+date -jf "%H:%M:%S" "08:11:02" +"%H-%M-%S"
 ```
