@@ -1063,6 +1063,8 @@ for i in `ls -lah | grep "Feb  5" cut -c 59-`; do echo $i; done;
 # read file line by line with whitespace in line
 cat filename | while read; do echo "$REPLY"; done
 
+# print current system date
+date
 
 # References / Further Reading
 # --------------------------------------
