@@ -330,6 +330,10 @@ find <scope> <option - find by name> <argument>
 # maximum three directories down
 find . -type d -name grid\* -maxdepth 3
 
+# use find command to fix file/dir permissions
+find ~/messy-permissions-dir/ -type f -exec chmod 644 {} +
+find ~/merry-permissions-dir/ -type d -exec chmod 755 {} +
+
 # file - print file type
 # --------------------------------------
 file <filename>
