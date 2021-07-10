@@ -968,6 +968,18 @@ touch ~/A/file_{11-99}         # creating more dummy files
 touch ~/A/file_100             #
 rsync -uav ~/A/ ~/B/ # transfering only new data
 
+# bind mounts
+# --------------------------------------
+mounting one path to another path
+
+# creating a bind mount
+mount -o bind work1 work2
+
+# finding mounted directories
+
+findmnt
+cat /etc/mtab
+cat /proc/self/mountinfo
 
 # resetting root password using rd.break
 # --------------------------------------
