@@ -973,13 +973,15 @@ rsync -uav ~/A/ ~/B/ # transfering only new data
 mounting one path to another path
 
 # creating a bind mount
-mount -o bind work1 work2
+sudo mount -o bind work1 work2
 
 # finding mounted directories
-
 findmnt
 cat /etc/mtab
 cat /proc/self/mountinfo
+
+# unmounting
+sudo unmount work2
 
 # resetting root password using rd.break
 # --------------------------------------
