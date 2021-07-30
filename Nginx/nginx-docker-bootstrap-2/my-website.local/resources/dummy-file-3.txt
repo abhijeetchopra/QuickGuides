@@ -1,0 +1,4 @@
+filename: dummy-file-3.txt
+--------------------
+
+this is some sample text
