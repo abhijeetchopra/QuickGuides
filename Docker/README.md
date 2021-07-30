@@ -33,6 +33,10 @@ docker run -v /opt/data/dir:/var/lib/mysql mysql # map host volume to container 
 docker inspect <>             # more info than 'docker ps'
 docker logs <>                # display stdout
 docker run -e APP_CLR=blue <> # export env variable
+
+# search docker hub for official ubuntu image
+docker search --filter is-official=true ubuntu
+
 ```
 
 ## Dockerfile
