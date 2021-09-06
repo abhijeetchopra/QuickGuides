@@ -48,12 +48,11 @@
 | --- | --- |
 | `brew services list` | list all services |
 | `brew services stop nginx` | stop nginx service |
-| `lsof -i tcp -nP | grep 80` | list all files using tcp protocol, with network numbers and portnumbers, then greps for 80 |
-| `lsof -i -P -n | grep -i "listen"` | list listening ports |
-| `lsof -i -P -n -i :80 -i :443 | grep "LISTEN"` | list listening ports on port 80 and 443 |
-| `sysctl -a | grep [c,g]pu_thermal_level` | list cpu and gpu temperature |
-| `sudo powermetrics | grep -i "CPU die temperature"` | list cpu die temperature |
-
+| `lsof -i tcp -nP \| grep 80` | list all files using tcp protocol, with network numbers and portnumbers, then greps for 80 |
+| `lsof -i -P -n \| grep -i "listen"` | list listening ports |
+| `lsof -i -P -n -i :80 -i :443 \| grep "LISTEN"` | list listening ports on port 80 and 443 |
+| `sysctl -a \| grep [c,g]pu_thermal_level` | list cpu and gpu temperature |
+| `sudo powermetrics \| grep -i "CPU die temperature"` | list cpu die temperature |
 
 ### Iterm2 Shortcuts
 
@@ -121,6 +120,6 @@ find /path/to/dir -type d -exec chmod 755 {} +
 Date
 
 ```bash
-# convert 
+# convert
 date -jf "%H:%M:%S" "08:11:02" +"%H-%M-%S"
 ```
