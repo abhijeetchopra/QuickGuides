@@ -568,12 +568,16 @@ x : execute
 sudo chown root test.sh
 sudo chown <user> <filename>
 
+# change group ownership of a symlink
+sudo chown -h <user> <symbolic-filename>
 
 # chgrp - Change Group Ownership
 # --------------------------------------
 sudo chgrp <wheel> test.sh
 sudo chgrp <group> <filename>
 
+# change group ownership of a symlink
+sudo chgrp -h <user> <symbolic-filename>
 
 # ACL - Access Control List
 # --------------------------------------
