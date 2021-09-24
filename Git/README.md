@@ -172,7 +172,13 @@ git checkout -- $INSERT_FILENAME
 # add file locally to staging area
 git add $INSERT_FILENAME
 
-# remove file from staging area  
+# remove newly added file from staging area / untrack file
+git rm --cached $INSERT_FILENAME
+
+# remove newly added directory from staging area / untrack directory
+git rm --cached -r $INSERT_DIRNAME
+
+# revert changes to checked file from staging area  
 git reset HEAD $INSERT_FILENAME
 ```
 
