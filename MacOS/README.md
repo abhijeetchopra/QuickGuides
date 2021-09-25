@@ -53,6 +53,8 @@
 | `lsof -i -P -n -i :80 -i :443 \| grep "LISTEN"` | list listening ports on port 80 and 443 |
 | `sysctl -a \| grep [c,g]pu_thermal_level` | list cpu and gpu temperature |
 | `sudo powermetrics \| grep -i "CPU die temperature"` | list cpu die temperature |
+| `softwareupdate --all --install --force"` | install software updates |
+| `xcode-select --install` | install xcode command line tools |
 
 ### Iterm2 Shortcuts
 
