@@ -74,6 +74,9 @@ aws ecr list-images --repository-name $INSERT_AWS_ECR_REPOSITORY_NAME --profile 
 # list latest tag of images in given repository
 aws ecr list-images --repository-name $INSERT_AWS_ECR_REPOSITORY_NAME --profile $AWS_PROFILE --region=$AWS_DEFAULT_REGION --query 'imageIds[].imageTag|reverse(sort(@))[0]' --output text
 
+# delete ecr image tag; if only one tag exists, it will delete the image
+aws ecr batch-delete-image --repository-name <REPO NAME> --image-ids imageTag=<TAG NAME> —profile <PROFILE> —region <REGION>
+
 aws s3 ls
 
 aws s3 ls s3://test-bucket/sample-file.txt
