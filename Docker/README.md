@@ -37,6 +37,9 @@ docker run -e APP_CLR=blue <> # export env variable
 # search docker hub for official ubuntu image
 docker search --filter is-official=true ubuntu
 
+# print SHA256 hash of docker image
+docker inspect --format='{{index .RepoDigests 0}}' <image>
+
 ```
 
 ## Dockerfile
