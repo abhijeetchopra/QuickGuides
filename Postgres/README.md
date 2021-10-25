@@ -170,7 +170,20 @@ postgres=#
 ## Connect to database on a remote postgres server
 
 ```bash
-#TODO
+psql -h $HOSTNAME -U $DATABASE_USERNAME -d $DATABASE_NAME
+
+psql -h localhost -U johndoe -d sample_db 
+
+# list databases on remote server - using meta command
+psql -h localhost -U johndoe -l
+
+# list databases on remote server - using pure sql command
+psql -h localhost -U johndoe -c 'select datname from pg_database'
+
+# run psql command on remote server
+psql -h localhost -U johndoe -c '\des*'
+psql -h localhost -U johndoe -c 'select * from sample_table'
+
 ```
 
 ## Psql CLI
@@ -338,8 +351,7 @@ ALTER TABLE human_resources.employees
 ### Data Constraint
 
 ```sql
-
-
+TODO
 ```
 
 ## Importing data
@@ -391,7 +403,6 @@ Three ways:
 2. File system level backup
 3. On-line backup
 
-
 ### SQL dump
 
 Taking dump
@@ -420,6 +431,28 @@ From commandline shell:
 
 ```bash
 createdb -T template0 dbname
+```
+
+### Psql meta commands
+
+Apart from running SQL commands, psql can issue meta commands when connected to a postgres database server
+
+```sql
+-- list databases on connected server
+\l
+
+-- connect to a different database (prompt change too)
+\c database_sample_one
+\c database_sample_two
+
+--
+
+-- list foreign servers
+database_sample_one=> \des
+
+-- list foreign servers, with more info
+database_sample_one=> \des+
+
 ```
 
 ## Official Docs
