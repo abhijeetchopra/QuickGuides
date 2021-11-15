@@ -23,6 +23,12 @@ git [command] --help
 
 ## Git Configuration
 
+### Listing git config with scope (global/local/unknown)
+
+```bash
+git config --list --show-origin --show-scope
+````
+
 ### Checking configuration settings
 
 ```bash
