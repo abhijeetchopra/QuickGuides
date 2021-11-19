@@ -95,4 +95,7 @@ aws sts decode-authorization-message --encoded-message $INSERT_ENCODED_MESSAGE -
 
 # find aws resource in vpc that owns the unknown IP address
 aws ec2 describe-network-interfaces --filters Name=addresses.private-ip-address,Values=$INSERT_IP_ADDRESS
+
+# print asg names and desired capacity
+aws --profile $AWS_PROFILE --region $AWS_REGION autoscaling describe-auto-scaling-groups --query "AutoScalingGroups[*] | [].[AutoScalingGroupName, DesiredCapacity]" --output text
 ```
