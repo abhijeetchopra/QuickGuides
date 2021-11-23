@@ -98,4 +98,8 @@ aws ec2 describe-network-interfaces --filters Name=addresses.private-ip-address,
 
 # print asg names and desired capacity
 aws --profile $AWS_PROFILE --region $AWS_REGION autoscaling describe-auto-scaling-groups --query "AutoScalingGroups[*] | [].[AutoScalingGroupName, DesiredCapacity]" --output text
+
+
+# get instance-id from within ec2 instance
+curl -s http://169.254.169.254/latest/meta-data/instance-id
 ```
