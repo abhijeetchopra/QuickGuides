@@ -102,4 +102,8 @@ aws --profile $AWS_PROFILE --region $AWS_REGION autoscaling describe-auto-scalin
 
 # get instance-id from within ec2 instance
 curl -s http://169.254.169.254/latest/meta-data/instance-id
+
+# get user-data from within ec2 instance
+curl -s http://169.254.169.254/latest/user-data
+
 ```
