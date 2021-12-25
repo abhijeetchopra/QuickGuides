@@ -106,4 +106,7 @@ curl -s http://169.254.169.254/latest/meta-data/instance-id
 # get user-data from within ec2 instance
 curl -s http://169.254.169.254/latest/user-data
 
+# list aws organization accounts
+aws organizations list-accounts --output text --query 'Accounts[?Status==`ACTIVE`][Status,JoinedTimestamp,Id,Email,Name,Alias]' | sort | cut -f2- | column -t
+
 ```
