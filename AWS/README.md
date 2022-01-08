@@ -17,13 +17,16 @@ aws ec2 describe-instances --profile $AWS_PROFILE --region=us-east-1 --output=ta
 # describe instances filter by instance-id
 aws ec2 describe-instances --profile $AWS_PROFILE --region=us-east-1 --output=table --instance-ids $INSERT_INSTANCE_ID
 
-# iterage over profiles in config file and get vpcs (using grep)
+# print aws profile names from aws config
+cat .aws/config | grep -v "^#" | grep "^\[profile" | sed 's/\[profile //;s/\]$//'
+
+# iterate over profiles in config file and get vpcs (using grep)
 for i in $(cat .aws/config | grep -v "^#" | grep "\[" | sed 's/\[//;s/\]//'); do echo "";  echo $i; eval "aws ec2 describe-vpcs --profile $i --region=us-east-1 | grep -e 'OwnerId' -e 'VpcId'"; echo "------------------------" ; done;
 
-# iterage over profiles in config file and get vpcs (using jq)
+# iterate over profiles in config file and get vpcs (using jq)
 for i in $(cat .aws/config | grep -v "^#" | grep "\[" | sed 's/\[//;s/\]//'); do echo "";  echo $i; eval "aws ec2 describe-vpcs --profile $i --region=us-east-1 | jq '.' | jq -r '.Vpcs[].VpcId,.Vpcs[].OwnerId'"; echo "------------------------" ; done;
 
-# iterage over profiles in config file and get vpcs (using aws cli --query option
+# iterate over profiles in config file and get vpcs (using aws cli --query option
 for i in $(cat .aws/config | grep -v "^#" | grep "\[" | sed 's/\[//;s/\]//'); do echo "";  echo $i; eval "aws ec2 describe-vpcs --profile $i --region=us-east-1 --query='Vpcs[].VpcId' --output=text"; echo "------------------------" ; done;
 
 for i in $(cat .aws/config | grep -v "^#" | grep "\[" | sed 's/\[//;s/\]//'); do echo ""; echo "------------------------ $i"; eval "aws ec2 describe-vpcs --profile $i  --region=us-east-1 --query 'Vpcs[].VpcId' --output text | xargs -n 1"; echo "------------------------" ; done;
