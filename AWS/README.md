@@ -29,6 +29,9 @@ for i in $(cat .aws/config | grep -v "^#" | grep "\[" | sed 's/\[//;s/\]//'); do
 # iterate over profiles in config file and get vpcs (using aws cli --query option
 for i in $(cat .aws/config | grep -v "^#" | grep "\[" | sed 's/\[//;s/\]//'); do echo "";  echo $i; eval "aws ec2 describe-vpcs --profile $i --region=us-east-1 --query='Vpcs[].VpcId' --output=text"; echo "------------------------" ; done;
 
+# iterate over aws named profiles and print decrypted ssm parameter string
+for i in $(cat .aws/config | grep -v "^#" | grep "^\[profile" | sed 's/\[profile //;s/\]$//' ); do echo "----------"; echo $i; aws --profile $i --region us-east-1 ssm get-parameter --name /sample/password/string  --with-decryption --query "Parameter.Value" --output text; echo ""; done;
+
 for i in $(cat .aws/config | grep -v "^#" | grep "\[" | sed 's/\[//;s/\]//'); do echo ""; echo "------------------------ $i"; eval "aws ec2 describe-vpcs --profile $i  --region=us-east-1 --query 'Vpcs[].VpcId' --output text | xargs -n 1"; echo "------------------------" ; done;
 
 # list account number / ownerid of instance from given instanceid (using jq)
