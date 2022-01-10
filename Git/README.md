@@ -146,7 +146,7 @@ git status
 > local files & changes
 
 ```bash
-# initialize local repo  
+# initialize local repo
 git init
 
 # undo initializing
@@ -184,7 +184,7 @@ git rm --cached $INSERT_FILENAME
 # remove newly added directory from staging area / untrack directory
 git rm --cached -r $INSERT_DIRNAME
 
-# revert changes to checked file from staging area  
+# revert changes to checked file from staging area
 git reset HEAD $INSERT_FILENAME
 ```
 
@@ -501,6 +501,87 @@ $ git log --oneline --graph
 * 639535b m2
 * 280fc64 m1
 * 2a069bf initial commit
+```
+
+## Tagging
+
+### List tags
+
+```bash
+# list tags
+git tag
+
+# list tags like
+git tag -l "v2.*"
+
+```
+
+### Create tags
+
+Two types of tags
+
+1. Lightweight
+2. Annotated (recommend)
+
+#### Create lightweight tag
+
+Lightweight tags are created with the absense of `-a, -s or -m` options
+
+```bash
+git tag v1.4-lw
+
+```
+
+#### Create annotated tag
+
+```bash
+git tag -a v1.4
+
+
+git tag -a v1.4 -m "version 1.4"
+
+```
+
+### Tagging old commits
+
+```bash
+git tag -a v1.2 <commit-sha>
+```
+
+### Pushing tags to remote
+
+By default, tags are not pushed to remote on `git push`.
+
+```bash
+# pushing single tag
+git push origin v1.4
+
+# pushing multiple tags
+git push --tags
+```
+
+### Checking out tags
+
+```bash
+git checkout v1.4
+```
+
+### Deleting tags
+
+```bash
+git tag -d  v1.4
+```
+
+### Distinguish lightweight vs annotaged tags
+
+Run below command. Lines marked with `tag` indicate lightweight tag. Lines marked with `commit`indicate annotated tag.
+
+```bash
+git for-each-ref refs/tags
+
+0774b0d88c9a751d05abf621bdafc272f50c2306 commit refs/tags/v1.0
+732c5e2da1b41282ee9d51897dedf3483a6331b2 tag    refs/tags/v1.1
+fd3cf147ac6b0bb9da13ae2fb2b73122b919a036 commit refs/tags/v1.2
 ```
 
 ## Fork
