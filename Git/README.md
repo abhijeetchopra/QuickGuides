@@ -514,6 +514,8 @@ git tag
 # list tags like
 git tag -l "v2.*"
 
+# list tags with message
+git tag -n
 ```
 
 ### Create tags
