@@ -49,4 +49,16 @@ salt '*' state.highstate
 salt '*' state.apply
 salt '*' state.apply <state-sls-name>
 
+# list all grains
+salt <target> grains.ls
+
+# list all grains with values
+salt <target> grains.items
+
+# list given grain value
+salt <target> grains.item <grain-name/key>
+
+# delete given grain
+salt <target> grains.delkey <grain-name/key>
+
 ```
