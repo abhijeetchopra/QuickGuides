@@ -172,7 +172,7 @@ postgres=#
 ```bash
 psql -h $HOSTNAME -U $DATABASE_USERNAME -d $DATABASE_NAME
 
-psql -h localhost -U johndoe -d sample_db 
+psql -h localhost -U johndoe -d sample_db
 
 # list databases on remote server - using meta command
 psql -h localhost -U johndoe -l
@@ -183,6 +183,9 @@ psql -h localhost -U johndoe -c 'select datname from pg_database'
 # run psql command on remote server
 psql -h localhost -U johndoe -c '\des*'
 psql -h localhost -U johndoe -c 'select * from sample_table'
+
+# setting parameters with PGOPTIONS shell variable
+PGOPTIONS=--search_path=myschema psql -h localhost -U johndoe -d sample_db -p 5432
 
 ```
 
