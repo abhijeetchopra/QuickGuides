@@ -32,6 +32,17 @@ for i in $(cat .aws/config | grep -v "^#" | grep "\[" | sed 's/\[//;s/\]//'); do
 # iterate over aws named profiles and print decrypted ssm parameter string
 for i in $(cat .aws/config | grep -v "^#" | grep "^\[profile" | sed 's/\[profile //;s/\]$//' ); do echo "----------"; echo $i; aws --profile $i --region us-east-1 ssm get-parameter --name /sample/password/string  --with-decryption --query "Parameter.Value" --output text; echo ""; done;
 
+
+# ssm create parameter
+aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm put-parameter --name "/path/to/param" --value "SAMPLE-SECRET-STRING" --type "SecureString" --tags "Key=purpose,Value=achopra-testing"
+
+# ssm update parameter
+aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm put-parameter --name "/path/to/param" --value "SAMPLE-SECRET-STRING" --type "SecureString" --overwrite
+
+# ssm create parameter load from file 
+aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm put-parameter --name "/path/to/param" --value file:///tmp/file.txt --type "SecureString" --tags "Key=purpose,Value=achopra-testing"
+
+
 for i in $(cat .aws/config | grep -v "^#" | grep "\[" | sed 's/\[//;s/\]//'); do echo ""; echo "------------------------ $i"; eval "aws ec2 describe-vpcs --profile $i  --region=us-east-1 --query 'Vpcs[].VpcId' --output text | xargs -n 1"; echo "------------------------" ; done;
 
 # list account number / ownerid of instance from given instanceid (using jq)
