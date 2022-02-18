@@ -398,6 +398,10 @@ revoke usage on schema human_resources from hr_manager;
 drop role hr_manager;
 ```
 
+```sql
+ALTER USER user_name WITH PASSWORD 'new_password';
+```
+
 ## Backup and restore database
 
 Three ways:
