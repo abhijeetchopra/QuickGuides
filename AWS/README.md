@@ -38,6 +38,9 @@ aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm put-parameter --name
 # ssm update parameter
 aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm put-parameter --name "/path/to/param" --value "SAMPLE-SECRET-STRING" --type "SecureString" --overwrite
 
+# ssm list parameter
+aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm get-parameter --name "/path/to/param" --with-decryption --output text
+
 # ssm create parameter load from file
 aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm put-parameter --name "/path/to/param" --value file:///tmp/file.txt --type "SecureString" --tags "Key=purpose,Value=achopra-testing"
 
