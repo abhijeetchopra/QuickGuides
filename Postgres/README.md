@@ -380,10 +380,16 @@ CREATE ROLE hr_manager WITH
 ```
 
 ```sql
+-- user name of current execution context
 select current_user;
 
+-- session user name
 select session_user;
 
+-- list available roles
+select rolname from pg_roles;
+
+-- change user
 set role hr_manager;
 
 reset role;
