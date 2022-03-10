@@ -41,6 +41,9 @@ aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm put-parameter --name
 # ssm list parameter
 aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm get-parameter --name "/path/to/param" --with-decryption --query="Parameter.Value" --output text
 
+# ssm list parameters recursively by path
+aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm get-parameters-by-path --path "/" --recursive --query "Parameters[*] | [].[Name,Value]" --output text
+
 # ssm create parameter load from file
 aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm put-parameter --name "/path/to/param" --value file:///tmp/file.txt --type "SecureString" --tags "Key=purpose,Value=achopra-testing"
 
