@@ -126,6 +126,9 @@ aws ec2 describe-network-interfaces --filters Name=addresses.private-ip-address,
 # print asg names and desired capacity
 aws --profile $AWS_PROFILE --region $AWS_REGION autoscaling describe-auto-scaling-groups --query "AutoScalingGroups[*] | [].[AutoScalingGroupName, DesiredCapacity]" --output text
 
+# print list of asgs tagged with a given key-value
+aws --profile $AWS_PROFILE --region $AWS_REGION autoscaling describe-auto-scaling-groups --query "AutoScalingGroups[?Tags[?(Key=='$TAG_KEY') && (Value=='$TAG_VALUE')]].AutoScalingGroupName" --output text | xargs -n 1
+
 # modify asg tag
 aws --profile $AWS_PROFILE --region $AWS_REGION autoscaling create-or-update-tags --tags ResourceId=$MY_ASG_NAME,ResourceType=auto-scaling-group,Key=$TAG_KEY,Value=$NEW_TAG_VALUE,PropagateAtLaunch=false
 
