@@ -132,6 +132,8 @@ aws --profile $AWS_PROFILE --region $AWS_REGION autoscaling describe-auto-scalin
 # modify asg tag
 aws --profile $AWS_PROFILE --region $AWS_REGION autoscaling create-or-update-tags --tags ResourceId=$MY_ASG_NAME,ResourceType=auto-scaling-group,Key=$TAG_KEY,Value=$NEW_TAG_VALUE,PropagateAtLaunch=false
 
+# modify multiple asgs tags given file with line separated names of asgs
+for i in `cat ~/file-with-names-of-asgs`; do echo -----$i; aws --profile $AWS_PROFILE --region $AWS_REGION autoscaling create-or-update-tags --tags ResourceId=$i,ResourceType=auto-scaling-group,Key=$TAG_KEY,Value=$NEW_TAG_VALUE,PropagateAtLaunch=false;echo ""; done;
 
 # get instance-id from within ec2 instance
 curl -s http://169.254.169.254/latest/meta-data/instance-id
