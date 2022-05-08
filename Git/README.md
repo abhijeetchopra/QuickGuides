@@ -321,6 +321,12 @@ git log origin/master..master
 git show master..origin/master
 ```
 
+### git rev-list | compare two branches
+
+```bash
+git rev-list --left-right --count master...develop
+```
+
 ## Remote
 
 Add remote in current directory/repo  
