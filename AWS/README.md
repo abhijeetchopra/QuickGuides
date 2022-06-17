@@ -144,4 +144,14 @@ curl -s http://169.254.169.254/latest/user-data
 # list aws organization accounts
 aws organizations list-accounts --output text --query 'Accounts[?Status==`ACTIVE`][Status,JoinedTimestamp,Id,Email,Name,Alias]' | sort | cut -f2- | column -t
 
+
+# associate vpc with private zone of another account
+
+ # get authorization first
+aws route53 create-vpc-association-authorization --hosted-zone-id $INSERT_ZONE_ID --vpc VPCRegion=$INSERT_REGION,VPCId=$INSERT_TARGET_VPC_ID --profile $AWS_PROFILE_OF_ACCOUNT_WITH_ZONE
+
+ # then associate vpc with zone
+aws route53 associate-vpc-with-hosted-zone --hosted-zone-id $INSERT_ZONE_ID --vpc VPCRegion=$INSERT_REGION,VPCId=$INSERT_TARGET_VPC_ID --profile $AWS_PROFILE_OF_ACCOUNT_WITH_VPC
+
+
 ```
