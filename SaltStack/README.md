@@ -1,6 +1,5 @@
 # SaltStack
 
-
 ```bash
 # run command on all hosts from salt-master
 salt '*' cmd.run 'hostname -I'
@@ -61,4 +60,35 @@ salt <target> grains.item <grain-name/key>
 # delete given grain
 salt <target> grains.delkey <grain-name/key>
 
+# list salt keys
+salt-key -L
+
+# list jobs
+salt-run jobs.list_jobs --out=json
+
+```
+
+## Runners
+
+Salt runners are convenience applications executed with the salt-run command.
+
+Salt runners work similarly to Salt execution modules however they execute on the Salt master itself instead of remote Salt minions.
+
+A Salt runner can be a simple client call or a complex application.
+
+## Runner Modules
+
+<https://docs.saltproject.io/en/latest/ref/runners/all/index.html#all-salt-runners>
+
+### Jobs Runner
+
+```bash
+salt-run jobs.list_jobs search_function='test.*,pkg.install'
+```
+
+Return the printout from a previously executed job
+
+```bash
+salt-run jobs.lookup_jid 20130916125524463507
+salt-run jobs.lookup_jid 20130916125524463507 --out=highstate
 ```
