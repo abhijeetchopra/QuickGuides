@@ -217,6 +217,9 @@ grep -n "the" poems    # prints the line numbers
 grep "word1" <filename> | grep "word2" # to grep for 2 words existing on the same line
 
 
+# print lines in file 2 that do not exit in file1
+grep -Fxvf file1 file2
+
 # awk - extract/modify file/stream
 # --------------------------------------
 awk '{print $2}' simple_data.txt # prints 2nd column of space/tab separated values
