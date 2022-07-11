@@ -153,5 +153,7 @@ aws route53 create-vpc-association-authorization --hosted-zone-id $INSERT_ZONE_I
  # then associate vpc with zone
 aws route53 associate-vpc-with-hosted-zone --hosted-zone-id $INSERT_ZONE_ID --vpc VPCRegion=$INSERT_REGION,VPCId=$INSERT_TARGET_VPC_ID --profile $AWS_PROFILE_OF_ACCOUNT_WITH_VPC
 
+# list rds engine versions of running instances
+aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION rds describe-db-instances --query "DBInstances[*] | [].[DBInstanceIdentifier,EngineVersion]" --output text | column -t
 
 ```
