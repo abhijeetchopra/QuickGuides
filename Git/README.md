@@ -709,7 +709,7 @@ git branch -d '$INSERT-NAME-OF-BRANCH-TO-BE-DELTED'
 #### Generate SSH key pair
 
 ```bash
-ssh-keygen -t rsa
+ssh-keygen -t rsa -b 4096
 
 id_rsa # to be configured on your local shell
 id_rsa.pub # to be configured on GitHub
