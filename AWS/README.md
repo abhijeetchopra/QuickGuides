@@ -61,6 +61,12 @@ aws ec2 describe-instances --profile $AWS_PROFILE --region=us-east-1 --instance-
 # list account number / ownerid of instance from given instanceid (using --query option)
 aws ec2 describe-instances --profile $AWS_PROFILE --region=us-east-1 --instance-ids $INSERT_INSTANCE_ID --query 'Reservations[0].OwnerId' --output text
 
+# create file with list of AMIs
+aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ec2 describe-images --owners self --query "Images[].ImageId" | grep ami | sed 's/^.*ami/ami/;s/,//;s/"//' > imageids
+
+# share AMIs with account ; UserId = AWS_ACCOUNT_ID = ID of account to share the image with
+for i in `cat imageids`; do aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ec2 modify-image-attribute --image-id $i --launch-permission "Add=[{UserId=$AWS_ACCOUNT_ID}]"; done;
+
 # list account alias from given profile
 aws iam list-account-aliases --profile $AWS_PROFILE
 
