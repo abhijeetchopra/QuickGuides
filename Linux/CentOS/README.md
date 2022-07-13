@@ -1079,6 +1079,27 @@ export HISTTIMEFORMAT="%Y-%m-%d_%H:%M:%S "
 echo "This is a test message." | mailx -r sender@email.com -s "Email subject" recipient@email.com
 
 
+# SSH
+# --------------------------------------
+
+# connect to a remote server
+
+ssh username@hostname
+ssh username@server-ip
+
+# debug with -vvv
+ssh -vvv username@hostname
+
+# generate SSH key pair
+ssh-keygen -t rsa -b 4096
+
+# id_rsa # to be configured on your local shell
+# id_rsa.pub # to be configured on remote server
+
+# generate public key from private key
+openssl rsa -in mykey.pem -pubout > mykey.pub
+
+
 # useful commands
 # --------------------------------------
 
