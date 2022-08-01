@@ -1112,6 +1112,12 @@ cat filename | while read; do echo "$REPLY"; done
 # print current system date
 date
 
+# ASN - Autonomous System Number whois lookup
+whois -h whois.radb.net -- '-i origin AS714'
+
+# ASN - IP range
+whois -h whois.radb.net -- '-i origin AS714' | grep -Eo "([0-9.]+){4}/[0-9]+" | head
+
 # References / Further Reading
 # --------------------------------------
 http://tldp.org/
