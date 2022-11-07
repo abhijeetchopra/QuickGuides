@@ -15,4 +15,7 @@ cat outfileclean | grep -e "^  +" -e "^  ~" -e "^  -"
 # note: modify grep expressions according to your need
 cat outfileclean | grep -e "^  +" -e "^  ~" -e "^  -" | grep launch_template | awk '{print $2}' | sed 's/^/-target /' | xargs
 
+# query terraform state to get a list of fqdns of all route53 records present
+terraform show -json | jq '.values.root_module.resources[] | select(.type == "aws_route53_record").values.fqdn' | jq -r | sort | cat -n
+
 ```
