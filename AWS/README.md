@@ -53,6 +53,9 @@ aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm start-session --targ
 # ssm list active sessions
 aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm describe-sessions --state Active
 
+# ssm list name of latest ecs supported ami
+aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended --query "Parameters[].Value" --output text | jq -r '.image_name'
+
 for i in $(cat .aws/config | grep -v "^#" | grep "\[" | sed 's/\[//;s/\]//'); do echo ""; echo "------------------------ $i"; eval "aws ec2 describe-vpcs --profile $i  --region=us-east-1 --query 'Vpcs[].VpcId' --output text | xargs -n 1"; echo "------------------------" ; done;
 
 # list account number / ownerid of instance from given instanceid (using jq)
