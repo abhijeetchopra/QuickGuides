@@ -55,6 +55,7 @@
 | `sudo powermetrics \| grep -i "CPU die temperature"` | list cpu die temperature |
 | `softwareupdate --all --install --force"` | install software updates |
 | `xcode-select --install` | install xcode command line tools |
+| `sw_vers` | print macOS version information |
 
 ### Iterm2 Shortcuts
 
