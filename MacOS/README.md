@@ -142,8 +142,9 @@ $ echo "C43EA4D7 4C9DDD7A AB0895EC 6D0DFA08
 C43EA4D74C9DDD7AAB0895EC6D0DFA0815C289EA00D6111075F3699C042989C207DE1952FF375E3656B7CE01D4FB118F1275B6B3B2B8BFA03A47477DD8F394C8
 ```
 
-Convert HEIC to JPEG (Note: extension is case sensitive, change accordingly)
+Convert HEIC to JPEG
 
 ```bash
+# NOTE: Extension is case sensitive, change accordingly.
 for i in `ls *.HEIC`; do filename=$(basename $i .HEIC); echo sips -s format jpeg "$i" --out "$filename.JPG"; done;
 ```
