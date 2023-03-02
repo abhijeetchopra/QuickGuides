@@ -70,6 +70,22 @@ Focus on Terminal
 }
 ```
 
+Color Customizations 
+
+Cmd + Shift + P > Preferences: Open User Settings (JSON) > Add below after adding a comma: 
+
+```json
+    "workbench.colorCustomizations": {
+        "terminal.findMatchBackground": "#ff0000",
+        "terminal.findMatchBorder": "#ff0000",
+        "terminal.findMatchHighlightBackground": "#ff0000",
+        "terminal.findMatchHighlightBorder": "#ff0000",
+        "terminalOverviewRuler.findMatchForeground": "#ff0000",
+        "terminal.selectionBackground": "#e26cffcb",
+    }
+
+```
+
 ## References
 
 - <https://itnext.io/easy-enhancements-for-vs-codes-terminal-6dda2c22ee5c>
