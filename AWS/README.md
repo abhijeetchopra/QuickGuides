@@ -58,6 +58,12 @@ aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm get-parameters --nam
 
 for i in $(cat .aws/config | grep -v "^#" | grep "\[" | sed 's/\[//;s/\]//'); do echo ""; echo "------------------------ $i"; eval "aws ec2 describe-vpcs --profile $i  --region=us-east-1 --query 'Vpcs[].VpcId' --output text | xargs -n 1"; echo "------------------------" ; done;
 
+# ssm list active sessions
+aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm describe-sessions --state Active --filters "key=Target,value=$INSTANCE_ID" --output table
+
+# ssm list past sessions
+aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION ssm describe-sessions --state History --filters "key=Target,value=$INSTANCE_ID" --output table
+
 # list account number / ownerid of instance from given instanceid (using jq)
 aws ec2 describe-instances --profile $AWS_PROFILE --region=us-east-1 --instance-ids $INSERT_INSTANCE_ID | jq -r '.Reservations[].OwnerId'
 
