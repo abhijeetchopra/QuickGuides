@@ -92,3 +92,11 @@ Return the printout from a previously executed job
 salt-run jobs.lookup_jid 20130916125524463507
 salt-run jobs.lookup_jid 20130916125524463507 --out=highstate
 ```
+
+## Troubleshooting
+
+```bash
+# run high state in debug mode from salt minion on host locally for troubleshooting
+salt-call -l debug state.highstate
+
+```
