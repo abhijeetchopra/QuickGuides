@@ -126,6 +126,13 @@ aws s3 ls s3://test-bucket/sample-file.txt
 aws s3 cp ~/localfile.txt s3://test-bucket/sample-file-upload.txt
 
 
+# list all file versions and save in local file
+aws --profile $AWS_PROFILE --region=$AWS_DEFAULT_REGION s3api list-object-versions --bucket $INSERT_BUCKET_NAME --prefix $INSERT_FILE_KEY --query "Versions[].VersionId" --output text | xargs -n 1 > s3-file-versions
+
+# read versoinf from local file and download them from s3 to current directory
+for i in `cat s3-file-versions`; do echo ***Downloading...$i***; aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION s3api get-object --bucket $INSERT_BUCKET_NAME --key $INSERT_FILE_KEY $i --version-id $i; done;
+
+
 # list latest launch template version of given launch template name
 aws ec2 describe-launch-templates --launch-template-names $INSERT_LAUNCH_TEMPLATE_NAME --profile $AWS_PROFILE --query "LaunchTemplates[].LatestVersionNumber" --output text; done;
 
