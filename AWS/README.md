@@ -133,6 +133,10 @@ aws --profile $AWS_PROFILE --region=$AWS_DEFAULT_REGION s3api list-object-versio
 for i in `cat s3-file-versions`; do echo ***Downloading...$i***; aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION s3api get-object --bucket $INSERT_BUCKET_NAME --key $INSERT_FILE_KEY $i --version-id $i; done;
 
 
+# test if file exists in s3 bucket
+aws s3api head-object --bucket <bucket-name> --key <file-key>
+
+
 # list latest launch template version of given launch template name
 aws ec2 describe-launch-templates --launch-template-names $INSERT_LAUNCH_TEMPLATE_NAME --profile $AWS_PROFILE --query "LaunchTemplates[].LatestVersionNumber" --output text; done;
 
