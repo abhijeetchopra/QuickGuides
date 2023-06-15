@@ -182,6 +182,9 @@ aws route53 associate-vpc-with-hosted-zone --hosted-zone-id $INSERT_ZONE_ID --vp
 # list rds engine versions of running instances
 aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION rds describe-db-instances --query "DBInstances[*] | [].[DBInstanceIdentifier,EngineVersion]" --output text | column -t
 
+# list rds endpoint addresses of running instances
+aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION rds describe-db-instances --query "DBInstances[*] | [].[DBInstanceIdentifier,Endpoint.Address]" --output text | column -t
+
 # list all route53 record names in given hosted zone
 aws --profile $AWS_PROFILE --region $AWS_DEFAULT_REGION route53 list-resource-record-sets --hosted-zone-id $INSERT-HOSTED-ZONE-ID --query="ResourceRecordSets[].Name" --output text | xargs -n 1 | sed 's/\.$//' | sort | cat -n
 
