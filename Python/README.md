@@ -2,9 +2,9 @@
 
 ```python
 # declaring and initializing variables
-name = 'Abhijeet'
-height = 5.4
-age = 24
+name = 'Alex'
+height = 4.5
+age = 14
 alive = True
 
 # displaying data types
@@ -22,8 +22,8 @@ n2 = 6
 n1 + n2
 
 # adding two strings
-s1 = 'Abhijeet'
-s2 = 'Chopra'
+s1 = 'Bread'
+s2 = 'Winner'
 s1 + s2
 
 # printing values
@@ -46,7 +46,7 @@ pi_float = float(pi_string)
 [1.73, 1.68, 1.71, 1.89]
 
 # python list with a name
-family = ['Ram Parkash', 'Pushpa', 'Rajan', 'Taruni', 'Abhijeet'. 'Rachna']
+items = ['Apple', 'Banana', 'Cheery', 'Dragonfruit']
 
 # python list with different data types
 prices = ['Milk', 5.49 , Onion , 2.29 , Tomato , 3.19]
@@ -56,8 +56,8 @@ prices # printing
 # python sub-lists
 prices_2 = [
     ["Milk", 5.49],
-	["Onion",2.29],
-	["Tomato",3.19]
+    ["Onion",2.29],
+    ["Tomato",3.19]
 ]
 
 prices_2 # printing
