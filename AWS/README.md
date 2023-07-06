@@ -8,6 +8,9 @@ aws organizations list-accounts --profile $AWS_PROFILE
 # describe vpcs
 aws ec2 describe-vpcs --profile $AWS_PROFILE --region=us-east-1 | grep -e "OwnerId" -e "VpcId"
 
+# describe all availability zones in a given region
+aws --region eu-north-1 ec2 describe-availability-zones --all-availability-zones --query "AvailabilityZones[*].ZoneName" --output text | xargs -n 1 | cat -n
+
 # describe instances
 aws ec2 describe-instances --profile $AWS_PROFILE --region=us-east-1 --output=table
 
