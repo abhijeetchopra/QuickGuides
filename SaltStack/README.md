@@ -50,7 +50,32 @@ salt '*' state.apply <state-sls-name>
 
 # add grain manually from salt-master
 salt <target> grains.setval key1 val1
+
+# Output:
+#     ----------
+#     key1:
+#         val1
+
 salt <target> grains.setval key1 "{'sub-key': 'val1', 'sub-key2': 'val2'}"
+
+# Output:
+#     ----------
+#     key1:
+#         ----------
+#         sub-key:
+#             val1
+#         sub-key2:
+#             val2
+
+salt <target> grains.setval key1 "{'sub-key': 'val1', 'sub-key2': 'val2'}"
+
+# Output:
+#     ----------
+#     key1:
+#         ----------
+#         sub-key:
+#             - val1
+#             - val2
 
 # list all grains
 salt <target> grains.ls
