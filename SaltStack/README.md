@@ -48,6 +48,10 @@ salt '*' state.highstate
 salt '*' state.apply
 salt '*' state.apply <state-sls-name>
 
+# add grain manually from salt-master
+salt <target> grains.setval key1 val1
+salt <target> grains.setval key1 "{'sub-key': 'val1', 'sub-key2': 'val2'}"
+
 # list all grains
 salt <target> grains.ls
 
@@ -93,10 +97,12 @@ salt-run jobs.lookup_jid 20130916125524463507
 salt-run jobs.lookup_jid 20130916125524463507 --out=highstate
 ```
 
-## Troubleshooting
+## Troubleshooting on minion
 
 ```bash
 # run high state in debug mode from salt minion on host locally for troubleshooting
 salt-call -l debug state.highstate
+
+salt-call -l debug state.apply
 
 ```
