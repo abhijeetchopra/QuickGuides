@@ -175,6 +175,15 @@ string_1.replace("sleepy", "lethargic")
 # DOWNLOAD  get-pip.py
 python3 get-pip.py
 
+# update pip
+python3 -m pip install --upgrade pip
+
+# list installed python packages
+python3 -m pip list
+
+# installing jinja2
+python3 -m pip install jinja2
+
 # installing numpy
 pip3 install numpy
 
