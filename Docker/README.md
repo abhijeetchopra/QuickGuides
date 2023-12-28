@@ -8,31 +8,35 @@
 docker version
 docker run docker/whalesay cowsay Hello
 docker run nginx
-docker ps                     # list all running containers
-docker ps -a                  # list all running and stopped containers
-docker container ls           # list all running containers
-docker container ls --all     # list all running and stopped containers
-docker stop <>                # stop a running container
-docker rm <>                  # remove a stopped container
-docker rm <> --force          # remove a running container
-docker images                 # list all downloaded images
-docker image ls               # list all downloaded images
-docker rmi <>                 # remove downloaded image
-docker pull <>                # remove downloaded image
-docker run ubuntu             # run a container from image 'ubuntu'
-dockder run ubuntu sleep 5    # run a container form image 'ubuntu', then run command 'sleep 5'
-docker exec <> cat /etc/hosts # execute command in container
-docker exec -it <> /bin/bash  # ssh into a running container
-docker run -d <>              # run container in detached mode
-docker attach <>              # attach to the running container
-docker run redis              # defaults to 'docker run redis:latest'
-docker run redis:4.0          # runs container from image of redis version '4.0'
-docker run -it redis          # interactive/terminal
-docker run -p 8080:80 <>      # map host port to container port
+docker ps                       # list all running containers
+docker ps -a                    # list all running and stopped containers
+docker ps --size                # display total file sizes
+docker ps --format '{{.Names}}' # list all running containers format output to display only names
+docker container ls             # list all running containers
+docker container ls --all       # list all running and stopped containers
+docker stop <>                  # stop a running container
+docker rm <>                    # remove a stopped container
+docker rm <> --force            # remove a running container
+docker images                   # list all downloaded images
+docker image ls                 # list all downloaded images
+docker rmi <>                   # remove downloaded image
+docker pull <>                  # remove downloaded image
+docker run ubuntu               # run a container from image 'ubuntu'
+dockder run ubuntu sleep 5      # run a container form image 'ubuntu', then run command 'sleep 5'
+docker exec <> cat /etc/hosts   # execute command in container
+docker exec -it <> /bin/bash    # ssh into a running container
+docker run -d <>                # run container in detached mode
+docker attach <>                # attach to the running container
+docker run redis                # defaults to 'docker run redis:latest'
+docker run redis:4.0            # runs container from image of redis version '4.0'
+docker run -it redis            # interactive/terminal
+docker run -p 8080:80 <>        # map host port to container port
 docker run -v /opt/data/dir:/var/lib/mysql mysql # map host volume to container volume
-docker inspect <>             # more info than 'docker ps'
-docker logs <>                # display stdout
-docker run -e APP_CLR=blue <> # export env variable
+docker inspect <>               # more info than 'docker ps'
+docker logs <>                  # display stdout
+docker run -e APP_CLR=blue <>   # export env variable
+docker system df                # show docker disk usage
+docker system info              # display system wide information
 
 # search docker hub for official ubuntu image
 docker search --filter is-official=true ubuntu
@@ -201,6 +205,13 @@ docker volume create data_volume
 
 # volume mounting host to container
 docker run -v data_volume:/var/lib/mysql mysql
+
+# identify which container owns which overlay directory
+docker inspect $(docker ps -qa) |  jq -r 'map([.Name, .GraphDriver.Data.MergedDir]) | .[] | "\(.[0])\t\(.[1])"'
+
+# OR if you don't have jq installed ...
+docker inspect -f $'{{.Name}}\t{{.GraphDriver.Data.MergedDir}}' $(docker ps -aq)
+
 ```
 
 ##### Bind Mounts
