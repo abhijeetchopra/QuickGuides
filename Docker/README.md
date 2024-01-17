@@ -38,6 +38,12 @@ docker run -e APP_CLR=blue <>   # export env variable
 docker system df                # show docker disk usage
 docker system info              # display system wide information
 
+# save docker image to local tar file
+docker save -o <tar file> <image name>
+
+# load docker image from local tar file
+docker load -i <path to tar file>
+
 # search docker hub for official ubuntu image
 docker search --filter is-official=true ubuntu
 
