@@ -667,8 +667,18 @@ git remote show [remote]
 ### Checkout Remote Branch
 
 ```bash
-git checkout -t <name of remote>/branch_name
+git checkout <name of remote>/branch_name
+
+# switch to branch named 'develop'
+git checkout develop
+
+# switch to branch named 'master'
+git checkout master
+
+# checkout previously checked out branch
+git checkout -
 ```
+
 
 ### Delete Local Branch
 
