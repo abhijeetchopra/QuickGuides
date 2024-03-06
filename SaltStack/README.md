@@ -95,6 +95,12 @@ salt-key -L
 # list jobs
 salt-run jobs.list_jobs --out=json
 
+# list jobs filter by function
+salt-run jobs.list_jobs --out=json search_function="state.apply"
+
+# list jobs filter by function and only print job id and target name (requires jq package to be installed)
+salt-run jobs.list_jobs --out=json search_function="state.apply" | jq -r 'to_entries[] | "\(.key) \(.value.Target)"'
+
 ```
 
 ## Runners
