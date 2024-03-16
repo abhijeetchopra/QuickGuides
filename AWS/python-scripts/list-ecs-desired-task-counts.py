@@ -7,6 +7,8 @@ Usage: python3 list-ecs-desired-task-counts.py --profile <aws-named-profile> --r
 
 Example: python3 list-ecs-desired-task-counts.py --profile default --region us-east-1
 
+To save the output to a file to be read by the update-ecs-desired-task-counts.py script, use the following command:
+         python3 list-ecs-desired-task-counts.py --profile default --region us-east-1 > sort -u > task-counts.csv
 """
 
 import argparse
@@ -39,4 +41,4 @@ for cluster_arn in clusters['clusterArns']:
     for service_arn in services['serviceArns']:
         service = ecs_client.describe_services(cluster=cluster_arn, services=[service_arn])
         for serv in service['services']:
-            print(f"{serv['serviceName']},{serv['desiredCount']}")
+            print(f"{serv['serviceName']},{serv['desiredCount']},{cluster_arn.split('/')[-1]}")
