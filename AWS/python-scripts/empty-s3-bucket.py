@@ -68,5 +68,7 @@ if 'DeleteMarkers' in response:
     for obj in response['DeleteMarkers']:
         s3.delete_object(Bucket=args.bucket, Key=obj['Key'], VersionId=obj['VersionId'])
         print(f"Deleted delete marker: {obj['Key']} - {obj['VersionId']}")
+else:
+    print(f"No delete markers found in bucket: {args.bucket}")
 
 print(f"Bucket {args.bucket} is now empty.")
