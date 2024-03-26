@@ -12,6 +12,7 @@ import argparse
 import boto3
 import csv
 import json
+import time
 
 # Create the parser
 parser = argparse.ArgumentParser(description='AWS named profile and region')
@@ -61,3 +62,13 @@ for item in data:
     # TODO: pretty print the json response
     #    print(json.dumps(response, indent=4))
     print(response)
+
+    # TODO: add error handling
+
+    # Sleep to avoid rate limiting
+    # UpdateService has a burst rate (or bucket maximum capacity) of 50
+    # Ref: https://docs.aws.amazon.com/AmazonECS/latest/APIReference/request-throttling.html
+    time.sleep(0.02)
+
+# Print a message to indicate that the script has completed
+print("\nEnd of script.\n")
