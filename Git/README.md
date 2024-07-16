@@ -51,7 +51,7 @@ git config --global user.email johndoe@example.com
 
 ### Setting global configuration for line endings
 
-On Windows, you simply pass true to the configuration (as shown below)  
+On Windows, you simply pass true to the configuration (as shown below)
 
 ```bash
 git config --global core.autocrlf true
@@ -214,7 +214,7 @@ git pull origin master
 
 ### Remote
 
-> Revert pushed commit 
+> Revert pushed commit
 
 ```bash
 #NOTE: - only do this if no-one has already pulled your change
@@ -262,13 +262,13 @@ git rm -r $INSERT_DIRNAME
 
 ### Undo adding file/dir using reset
 
-Remove file from staging area  
+Remove file from staging area
 
 ```bash
 git reset HEAD -- $INSERT_FILENAME
 ```
 
-Remove directory from staging area  
+Remove directory from staging area
 
 ```bash
 git reset HEAD -- $INSERT_DIRNAME
@@ -303,13 +303,13 @@ git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 git log --oneline --graph -n 5
 ```
 
-Commits on origin/master but not yet on master  
+Commits on origin/master but not yet on master
 
 ```bash
 git log master..origin/master
 ```
 
-Commits on master but not yet on origin/master  
+Commits on master but not yet on origin/master
 
 ```bash
 git log origin/master..master
@@ -329,13 +329,13 @@ git rev-list --left-right --count master...develop
 
 ## Remote
 
-Add remote in current directory/repo  
+Add remote in current directory/repo
 
 ```bash
 git remote add https://github.com/abhijeetchopra/new-repo/abc.git
 ```
 
-View remote config in current directory/repo  
+View remote config in current directory/repo
 
 ```bash
 git remote -v
@@ -343,7 +343,7 @@ git remote -v
 
 ## Pushing
 
-The -u parameter tells git to remember the parameters so next time we can write just : git push  
+The -u parameter tells git to remember the parameters so next time we can write just : git push
 
 ```bash
 git push -u origin master
@@ -379,7 +379,7 @@ git add $INSERT_FILENAME
 
 ## Unstage
 
-Unstaging files from repo  
+Unstaging files from repo
 
 ```bash
 git reset new-repo/readme.txt
@@ -387,7 +387,7 @@ git reset new-repo/readme.txt
 
 ## Revert
 
-Revert changes in file to how they were at the last commit  
+Revert changes in file to how they were at the last commit
 
 ```bash
 git checkout -- $INSERT_FILENAME
