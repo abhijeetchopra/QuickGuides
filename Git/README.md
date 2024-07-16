@@ -393,6 +393,12 @@ Revert changes in file to how they were at the last commit
 git checkout -- $INSERT_FILENAME
 ```
 
+Revert unstaged changes in all files in current and sub dirs
+
+```bash
+git checkout -- .
+```
+
 Revert repo to a previous commit and delete any changes made after the commit
 
 ```bash
