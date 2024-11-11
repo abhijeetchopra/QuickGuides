@@ -128,6 +128,12 @@ salt-run jobs.lookup_jid 20130916125524463507
 salt-run jobs.lookup_jid 20130916125524463507 --out=highstate
 ```
 
+Print list of salt states in ascending order of duration or time taken for each salt state to complete in seconds
+
+```bash
+salt-run jobs.lookup_jid 20130916125524463507 --out=highstate | grep -e "ID:" -e "Duration:" | paste - - | sed 's/^.*ID: //g;s/[ ]*Duration://g' | awk '{print $1 " "$2/1000}' | sort -h -k2 | column -t
+```
+
 ## Troubleshooting on minion
 
 ```bash
